@@ -1,0 +1,37 @@
+#searchBar {
+  margin: 15px 10px;
+}
+
+.main-body {
+    background-color:#E28F41;
+}
+
+.search-box {
+    background-color: #E28F41;
+    padding: 10px;
+}
+
+.tableWrapper {
+  max-height: 400px;
+  overflow: auto;
+}
+
+.jumbotron {
+    background-color: #00477D;
+    color: #F0F0F0;
+}
+
+.main-title {
+    background-color: #00477D;
+    color: #F0F0F0;
+    padding: 10px;
+}
+
+#add-heading {
+    color: #F0F0F0;
+}
+
+#addBar {
+    background-color: #E28F41;
+    padding: 10px;
+}
