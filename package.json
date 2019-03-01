@@ -1,5 +1,5 @@
 {
-  "name": "Essence-Events",
+  "name": "essence-events",
   "version": "1.0.0",
   "description": "Routing server-side requests using ExpressJS",
   "main": "server.js",
