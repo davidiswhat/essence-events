@@ -1,10 +1,10 @@
 {
-  "name": "Assignment4",
+  "name": "Essence-Events",
   "version": "1.0.0",
   "description": "Routing server-side requests using ExpressJS",
   "main": "server.js",
-  "author": "Medhir Bhargava",
-  "license": "MIT",
+  "author": "William Owens",
+  "license": "GPLv3",
   "dependencies": {
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
