@@ -1,11 +1,3 @@
 # essence-events
 Redesigning essence-events.net
-## Getting Started
-This project requires nodejs and npm. To install the required packages, simply type
-```bash
-npm install
-```bash
-To run the server, type
-```
-nodejs server.js
-```
+This is a CEN3031 Group Project, done by 4 students
