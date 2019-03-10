@@ -60,7 +60,7 @@ body h4 {
 .btn {
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
-    border-radius: 12px;
+    border-radius: 0px;
     border: 0;
     background-image: none;
     text-shadow: none;
@@ -89,15 +89,17 @@ body h4 {
 }
 
 .btn-primary {
-    background-color: #2dcc70
+    background-color: #008CBA;
+    border-radius: 12px;
 }
 
 .btn-primary:hover {
-    background-color: #24a259
+    background-color: rgb(3, 71, 94);
+    border-radius: 12px;
 }
 
 a {
-    color: #2dcc70;
+    color: #008CBA;
     -webkit-transition: 300ms;
     -moz-transition: 300ms;
     -o-transition: 300ms;
@@ -521,7 +523,7 @@ header .dropdown-menu:before {
 }
 
 #bottom a:hover {
-    color: #2dcc70
+    color: #cca72d
 }
 
 #bottom ul.address>li {
