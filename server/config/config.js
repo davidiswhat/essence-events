@@ -4,6 +4,6 @@
 module.exports = {
   db: {
     uri: 'mongodb://admin:password123@ds111025.mlab.com:11025/wso-bootcamp4', //place the URI of your mongo database here.
-  }, 
-  port: process.env.PORT
+  },  
+  port: process.env.PORT ? process.env.PORT : 8080
 };
