@@ -12,3 +12,6 @@ var testimonalSchema = new mongoose.Schema({
    image_file: String
 
   });
+
+var Testimonials = mongoose.model('Testimonials', testimonialSchema);
+module.exports = Testimonials;

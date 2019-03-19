@@ -13,3 +13,6 @@ var vendorSchema = new mongoose.Schema({
 
    
   });
+
+var Vendors = mongoose.model('Vendors', vendorSchema);
+module.exports = Vendors;

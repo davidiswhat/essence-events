@@ -12,3 +12,6 @@ var serviceSchema = new mongoose.Schema({
     image_file: String
 
     });
+
+var Services = mongoose.model('Services', serviceSchema);
+module.exports = Services;
