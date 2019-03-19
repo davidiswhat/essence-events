@@ -3,9 +3,11 @@ var express = require('express'),
     User = require('../models/user');
 
 //GET route for reading data
+
 router.get('/', function (req, res, next) {
     return res.sendFile(path.join(__dirname + '/templateLogReg/index.html')); //Change this possibly?
   });
+
 
 //POST route for updating data
 router.post('/', function (req, res, next) {
