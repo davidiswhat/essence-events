@@ -81,6 +81,14 @@
                 </form>
             </div>   
         </div>
+        <form name="addListingFrm">
+                <input type="text" name="newListingCode" ng-model="newListingCode" required placeholder="Code (required)"/>
+                <input type="text" name="newListingName" ng-model="newListingName" required placeholder="Name (required)"/>
+                <input type="text" name="newListingLongitude" ng-model="newListingLongitude" placeholder="Longitude"/>
+                <input type="text" name="newListingLatitude" ng-model="newListingLatitude" placeholder="Latitude"/>
+                <input type="text" name="newListingAddress" ng-model="newListingAddress" placeholder="Address"/>
+                <button ng-disabled="addListingFrm.$invalid" ng-click="addListing()">Add</button>
+              </form>
         <br>
         <font size="3">
         <div class = "other">
