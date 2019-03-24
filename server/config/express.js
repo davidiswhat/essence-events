@@ -5,7 +5,7 @@ var path = require('path'),
     bodyParser = require('body-parser'),
     config = require('./config'),
     listingsRouter = require('../routes/listings.server.routes'),
-    authenticationRouter = require("../routes/accounts.server.router.js");
+    authenticationRouter = require("../routes/authenticate.router");
 
 module.exports.init = function() {
   //connect to database
@@ -27,8 +27,7 @@ module.exports.init = function() {
   /*Route requests to [url]/api/authenticate towards our authentication system */
   app.use('/api/authenticate', authenticationRouter);
 
-  /**TODO 
-  Go to homepage for all routes not specified */ 
+  /*Go to homepage for all routes not specified */ 
   app.all('/*', function(req, res) {
     res.redirect('/404.html')
   });

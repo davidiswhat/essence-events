@@ -1,16 +1,12 @@
 var express = require('express'), 
     router = express.Router();
-    User = require('../models/user');
+    User = require('../models/account.model');
 
 //GET route for reading data
 
-router.get('/', function (req, res, next) {
-    return res.sendFile(path.join(__dirname + '/templateLogReg/index.html')); //Change this possibly?
-  });
-
-
 //POST route for updating data
-router.post('/', function (req, res, next) {
+router.route('/')
+  .post(function (req, res, next) {
     //This makes sure the passwords match
     if (req.body.password !== req.body.passwordConf) {
       var err = new Error('Passwords do not match.');
@@ -57,3 +53,4 @@ router.post('/', function (req, res, next) {
     }
   })
   
+  module.exports = router;
