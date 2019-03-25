@@ -9,6 +9,7 @@
     "bcrypt": "^1.0.1",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
+    "express-session": "^1.15.6",
     "mocha": "^6.0.2",
     "mongoose": "^4.2.9",
     "morgan": "^1.6.1",

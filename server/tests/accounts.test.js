@@ -1,7 +1,7 @@
 var should = require('should'), 
-    mongoose = require('mongoose'), 
-    Account = require('../models/account.model'), 
-    config = require('../config/config');
+    mongoose = require('mongoose'),
+    config = require('../config/config'),
+    Account = require('../models/account.model');
 
 account = {
     email: "bill@gmail.com",

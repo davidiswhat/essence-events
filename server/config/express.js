@@ -4,7 +4,7 @@ var path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config'),
-    listingsRouter = require('../routes/listings.server.routes'),
+    session = require('express-session'),
     authenticationRouter = require("../routes/authenticate.router");
 
 module.exports.init = function() {
@@ -16,6 +16,12 @@ module.exports.init = function() {
 
   //enable request logging for development debugging
   app.use(morgan('dev'));
+
+  app.use(session({
+    secret: "golden apple",
+    resave: true,
+    saveUninitialized: false
+  }));
 
   //body parsing middleware 
   app.use(bodyParser.json());

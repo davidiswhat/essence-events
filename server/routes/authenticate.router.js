@@ -3,35 +3,37 @@ var express = require('express'),
     User = require('../models/account.model');
 
 //GET route for reading data
+router.route('/')
+  .get(function (req, res) {
+    console.log("This is the user's request:")
+    console.log(req.session.userId);
+    res.status(200).send("");
+  });
 
 //POST route for updating data
 router.route('/')
   .post(function (req, res, next) {
     //This makes sure the passwords match
     if (req.body.password !== req.body.passwordConf) {
-      var err = new Error('Passwords do not match.');
-      err.status = 400;
-      res.send("passwords don't match");
-      return next(err);
+      res.status(400).json({"error": "Passwords do not match."});
+      return;
     }
   
     if (req.body.email &&
-      req.body.username &&
       req.body.password &&
       req.body.passwordConf) {
   
       var userData = {
         email: req.body.email,
-        username: req.body.username,
         password: req.body.password,
       }
-  
       User.create(userData, function (error, user) {
         if (error) {
-          return next(error);
+          res.status(400).send(error);
         } else {
           req.session.userId = user._id;
-          return res.redirect('/profile'); //This needs to change??
+          res.json(user);
+          //return res.redirect('/profile'); //This needs to change??
         }
       });
   
@@ -43,7 +45,7 @@ router.route('/')
           return next(err);
         } else {
           req.session.userId = user._id;
-          return res.redirect('/profile');
+          return res.redirect('/AccountManagement.html');
         }
       });
     } else {
