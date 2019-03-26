@@ -6,6 +6,7 @@
   "author": "William Owens",
   "license": "GPLv3",
   "dependencies": {
+    "angular": "^1.7.8",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "mongodb": "^3.1.13",
