@@ -4,8 +4,8 @@ var path = require('path'),
     morgan = require('morgan'),
     bodyParser = require('body-parser'),
     config = require('./config'),
-    listingsRouter = require('../routes/listings.server.routes'),
-    authenticationRouter = require("../routes/accounts.server.router.js");
+    session = require('express-session'),
+    authenticationRouter = require("../routes/authenticate.router");
 
 module.exports.init = function() {
   //connect to database
@@ -17,6 +17,12 @@ module.exports.init = function() {
   //enable request logging for development debugging
   app.use(morgan('dev'));
 
+  app.use(session({
+    secret: "golden apple",
+    resave: true,
+    saveUninitialized: false
+  }));
+
   //body parsing middleware 
   app.use(bodyParser.json());
 
@@ -27,8 +33,7 @@ module.exports.init = function() {
   /*Route requests to [url]/api/authenticate towards our authentication system */
   app.use('/api/authenticate', authenticationRouter);
 
-  /**TODO 
-  Go to homepage for all routes not specified */ 
+  /*Go to homepage for all routes not specified */ 
   app.all('/*', function(req, res) {
     res.redirect('/404.html')
   });

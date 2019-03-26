@@ -1,41 +1,44 @@
 var express = require('express'), 
     router = express.Router();
-    User = require('../models/user');
+    User = require('../models/account.model');
 
 //GET route for reading data
-
-router.get('/', function (req, res, next) {
-    return res.sendFile(path.join(__dirname + '/templateLogReg/index.html')); //Change this possibly?
+router.route('/status')
+  .get(function (req, res) {
+    if (req.session.userId) {
+      console.log("This is the user's request:")
+      console.log(req.session.userId);
+      res.status(200).send("Logged in.");
+    }
+    else {
+      console.log("User is not logged in")
+      res.status(401).send("User is not logged in.")
+    }
   });
 
-
 //POST route for updating data
-router.post('/', function (req, res, next) {
+router.route('/')
+  .post(function (req, res, next) {
     //This makes sure the passwords match
     if (req.body.password !== req.body.passwordConf) {
-      var err = new Error('Passwords do not match.');
-      err.status = 400;
-      res.send("passwords don't match");
-      return next(err);
+      res.status(400).json({"error": "Passwords do not match."});
+      return;
     }
-  
     if (req.body.email &&
-      req.body.username &&
       req.body.password &&
       req.body.passwordConf) {
   
       var userData = {
         email: req.body.email,
-        username: req.body.username,
         password: req.body.password,
       }
-  
       User.create(userData, function (error, user) {
         if (error) {
-          return next(error);
+          res.status(400).send(error);
         } else {
           req.session.userId = user._id;
-          return res.redirect('/profile'); //This needs to change??
+          res.json(user);
+          //return res.redirect('/profile'); //This needs to change??
         }
       });
   
@@ -47,7 +50,7 @@ router.post('/', function (req, res, next) {
           return next(err);
         } else {
           req.session.userId = user._id;
-          return res.redirect('/profile');
+          return res.redirect('/AccountManagement.html');
         }
       });
     } else {
@@ -57,3 +60,4 @@ router.post('/', function (req, res, next) {
     }
   })
   
+  module.exports = router;

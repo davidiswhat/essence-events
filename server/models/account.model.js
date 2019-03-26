@@ -46,5 +46,5 @@ userAccSchema.pre('save', function (next) {
 });
 
 
-var Users = mongoose.model('User', UserAccSchema);
+var Users = mongoose.model('User', userAccSchema);
 module.exports = Users;
