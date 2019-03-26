@@ -25,7 +25,7 @@
         font-size: 2em;
     }
 </style>
-<body>
+<body ng-app="">
     <!--Header-->
     <header class="navbar navbar-fixed-top">
         <div class="navbar-inner">
@@ -35,7 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a id="logo" class="pull-left" href="index.html"></a>
+                <img src="images/logoReplace.webp" class="pull-left" href="index.html"></img>
                 <div class="nav-collapse collapse pull-left">
                     <ul class="nav">
                         <li><a href="index.html">Home</a></li>
@@ -44,7 +44,7 @@
                         <li><a href="Testimonials.html">Testimonials</a></li>
                         <li><a href="ContactUs.html">Contact Us</a></li>
                         <li><a href="AboutUs.html">About Us</a></li>
-                        <li><a href="AccountManagement.html">Account</a></li>
+                        <!--<li><a href="AccountManagement.html">Account</a></li>-->
                         <li class="active"><a href="SignUp.html">Sign Up</a></li>
                         <li><a href="LogIn.html">Log In</a></li>
                     </ul>        
@@ -62,7 +62,7 @@
             <div class="span8">
                 <h4>Sign Up Form</h4>
                 <div class="status alert alert-success" style="display: none"></div>
-                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="contact-us.send.php">
+                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" ><!--action="contact-us.send.php"  keeping from page crash-->
                     <div class="row-fluid">
                         <div class="span5">
                             <label>Full Name</label>
@@ -81,14 +81,6 @@
                 </form>
             </div>   
         </div>
-        <form name="addListingFrm">
-                <input type="text" name="newListingCode" ng-model="newListingCode" required placeholder="Code (required)"/>
-                <input type="text" name="newListingName" ng-model="newListingName" required placeholder="Name (required)"/>
-                <input type="text" name="newListingLongitude" ng-model="newListingLongitude" placeholder="Longitude"/>
-                <input type="text" name="newListingLatitude" ng-model="newListingLatitude" placeholder="Latitude"/>
-                <input type="text" name="newListingAddress" ng-model="newListingAddress" placeholder="Address"/>
-                <button ng-disabled="addListingFrm.$invalid" ng-click="addListing()">Add</button>
-              </form>
         <br>
         <font size="3">
         <div class = "other">
