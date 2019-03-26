@@ -3,11 +3,17 @@ var express = require('express'),
     User = require('../models/account.model');
 
 //GET route for reading data
-router.route('/')
+router.route('/status')
   .get(function (req, res) {
-    console.log("This is the user's request:")
-    console.log(req.session.userId);
-    res.status(200).send("");
+    if (req.session.userId) {
+      console.log("This is the user's request:")
+      console.log(req.session.userId);
+      res.status(200).send("Logged in.");
+    }
+    else {
+      console.log("User is not logged in")
+      res.status(401).send("User is not logged in.")
+    }
   });
 
 //POST route for updating data
@@ -18,7 +24,6 @@ router.route('/')
       res.status(400).json({"error": "Passwords do not match."});
       return;
     }
-  
     if (req.body.email &&
       req.body.password &&
       req.body.passwordConf) {
