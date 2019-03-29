@@ -6,8 +6,8 @@
   "author": "William Owens",
   "license": "GPLv3",
   "dependencies": {
-    "bcrypt": "^1.0.1",
     "angular": "^1.7.8",
+    "bcrypt": "^1.0.1",
     "body-parser": "^1.14.1",
     "express": "^4.13.3",
     "express-session": "^1.15.6",
