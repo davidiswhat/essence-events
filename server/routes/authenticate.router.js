@@ -16,6 +16,7 @@ router.route('/status')
     }
   });
 
+  
 //POST route for updating data
 router.route('/')
   .post(function (req, res, next) {
