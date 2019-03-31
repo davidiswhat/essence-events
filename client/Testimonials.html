@@ -25,7 +25,7 @@
         font-size: 2em;
     }
 </style>
-<body>
+<body ng-app="">
     <!--Header-->
     <header class="navbar navbar-fixed-top">
         <div class="navbar-inner">
@@ -35,7 +35,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <a id="logo" class="pull-left" href="index.html"></a>
+                <img src="images/logoReplace.webp" class="pull-left" href="index.html"></img>
                 <div class="nav-collapse collapse pull-left">
                     <ul class="nav">
                         <li><a href="index.html">Home</a></li>
@@ -44,9 +44,9 @@
                         <li class="active"><a href="Testimonials.html">Testimonials</a></li>
                         <li><a href="ContactUs.html">Contact Us</a></li>
                         <li><a href="AboutUs.html">About Us</a></li>
-                        <li><a href="AccountManagement.html">Account</a></li>
-                        <li><a href="SignUp.html">Sign Up</a></li>
-                        <li><a href="LogIn.html">Log In</a></li>
+                        <li ng-show="myVar"><a href="AccountManagement.html">Account</a></li>
+                        <li ng-hide="myVar"><a href="SignUp.html">Sign Up</a></li>
+                        <li ng-hide="myVar"><a href="LogIn.html">Log In</a></li>
                     </ul>        
                 </div>
             </div>
@@ -55,8 +55,12 @@
     <!-- /header -->
 
     <section class="no-margin">
-        <div id="map" style="height:50px;"></div>
+        <div id="map" style="height:70px;"></div>
     </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    Logged in: <input type="checkbox" ng-model="myVar">
+
     <section id="contact-page" class="container">
         <div id="map" style="height:10px;"></div>
         <div class="BigFontZone">
@@ -66,6 +70,7 @@
         
     </section>
     <!--Footer-->
+    <div class="fixedBot2">
     <footer id="footer">
         <div class="container">
             <div class="row-fluid">
@@ -86,5 +91,6 @@
             </div>
         </div>
     </footer>
+    </div>
 </body>
 </html>
