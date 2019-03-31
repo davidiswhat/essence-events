@@ -25,12 +25,14 @@ router.route('/')
       return;
     }
     if (req.body.email &&
+      req.body.phoneNum &&
       req.body.password &&
       req.body.passwordConf) {
   
       var userData = {
         email: req.body.email,
         password: req.body.password,
+        phoneNum: req.body.phoneNum,
       }
       User.create(userData, function (error, user) {
         if (error) {

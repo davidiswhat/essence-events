@@ -10,7 +10,16 @@ var userAccSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-  }
+  },
+  phoneNum: {
+    type: String,
+    required: true,
+  },
+  isAdmin: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
 });
 
 userAccSchema.statics.authenticate = function (email, password, callback) {

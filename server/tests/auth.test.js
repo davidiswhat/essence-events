@@ -20,6 +20,7 @@ describe('Account authentication tests', function () {
         var acc = {
           email: "bill@gmail.com",
           password: "epic password",
+          phoneNum: "555-5555",
           passwordConf: "epic password"
         }
         agent.post('/api/authenticate')
@@ -37,7 +38,8 @@ describe('Account authentication tests', function () {
         var acc = {
             email: "bill@gmail.com",
             password: "epic psword",
-            passwordConf: "epic password"
+            passwordConf: "epic password",
+            phoneNum: "555-5555"
         }
         agent.post('/api/authenticate')
         .send(acc)
@@ -52,7 +54,8 @@ describe('Account authentication tests', function () {
         var acc = {
             email: "sam@gmail.com",
             password: "epic password",
-            passwordConf: "epic password"
+            passwordConf: "epic password",
+            phoneNum:"555-5555"
         }
         agent.post('/api/authenticate')
         .send(acc)
@@ -71,6 +74,21 @@ describe('Account authentication tests', function () {
                 should.not.exist(err);
                 done();
             })
+        });
+    });
+
+    it('should not be able to create an account', function(done) {
+        var acc = {
+          email: "bill@gmail.com",
+          password: "epic password",
+          passwordConf: "epic password"
+        }
+        agent.post('/api/authenticate')
+        .send(acc)
+        .expect(400)
+        .end(function(err, res) {
+            should.exist(res);
+            done();
         });
     });
     
