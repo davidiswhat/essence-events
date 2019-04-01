@@ -25,16 +25,21 @@ router.route('/')
       return;
     }
     if (req.body.email &&
+      req.body.phoneNum &&
+      req.body.fullName &&
       req.body.password &&
       req.body.passwordConf) {
   
       var userData = {
         email: req.body.email,
         password: req.body.password,
+        phoneNum: req.body.phoneNum,
+        fullName: req.body.fullName
       }
       User.create(userData, function (error, user) {
         if (error) {
-          res.status(400).send(error);
+          console.log(error);
+          res.status(400).json({"error": "Email already in use."});
         } else {
           req.session.userId = user._id;
           res.json(user);
@@ -45,18 +50,14 @@ router.route('/')
     } else if (req.body.logemail && req.body.logpassword) {
       User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
         if (error || !user) {
-          var err = new Error('Wrong email or password.');
-          err.status = 401;
-          return next(err);
+          res.status(400).json({"error": "Wrong email or password."});
         } else {
           req.session.userId = user._id;
           return res.redirect('/AccountManagement.html');
         }
       });
     } else {
-      var err = new Error('All fields required.');
-      err.status = 400;
-      return next(err);
+      res.status(400).json({"error": "Please fill out all fields."});
     }
   })
   

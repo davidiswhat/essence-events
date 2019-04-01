@@ -19,7 +19,9 @@ describe('Account authentication tests', function () {
     it('should be able to create an account', function(done) {
         var acc = {
           email: "bill@gmail.com",
+          fullName: "bill billson",
           password: "epic password",
+          phoneNum: "555-5555",
           passwordConf: "epic password"
         }
         agent.post('/api/authenticate')
@@ -36,8 +38,10 @@ describe('Account authentication tests', function () {
     it('should not create an account if passwords don\'t match', function(done) {
         var acc = {
             email: "bill@gmail.com",
+            fullName: "bill billson",
             password: "epic psword",
-            passwordConf: "epic password"
+            passwordConf: "epic password",
+            phoneNum: "555-5555"
         }
         agent.post('/api/authenticate')
         .send(acc)
@@ -51,8 +55,10 @@ describe('Account authentication tests', function () {
     it('should allow users to login', function(done) {
         var acc = {
             email: "sam@gmail.com",
+            fullName: "sam samson",
             password: "epic password",
-            passwordConf: "epic password"
+            passwordConf: "epic password",
+            phoneNum:"555-5555"
         }
         agent.post('/api/authenticate')
         .send(acc)
@@ -71,6 +77,38 @@ describe('Account authentication tests', function () {
                 should.not.exist(err);
                 done();
             })
+        });
+    });
+
+    it('should not be able to create an account without of a phone number', function(done) {
+        var acc = {
+          email: "bill@gmail.com",
+          fullName: "bill billson",
+          password: "epic password",
+          passwordConf: "epic password"
+        }
+        agent.post('/api/authenticate')
+        .send(acc)
+        .expect(400)
+        .end(function(err, res) {
+            should.exist(res);
+            done();
+        });
+    });
+
+    it('should not be able to create an account without a name', function(done) {
+        var acc = {
+          email: "bill@gmail.com",
+          phoneNumber: "555-555-5555",
+          password: "epic password",
+          passwordConf: "epic password"
+        }
+        agent.post('/api/authenticate')
+        .send(acc)
+        .expect(400)
+        .end(function(err, res) {
+            should.exist(res);
+            done();
         });
     });
     

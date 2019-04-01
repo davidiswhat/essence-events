@@ -25,7 +25,8 @@
         font-size: 2em;
     }
 </style>
-<body >
+<body ng-app="essenceEvents" ng-controller="AccountsController">
+    <p id="checkLogIn()"></p>
     <!--Header-->
     <header class="navbar navbar-fixed-top" ng-app="">
         <div class="navbar-inner">
@@ -44,15 +45,13 @@
                         <li><a href="Testimonials.html">Testimonials</a></li>
                         <li><a href="ContactUs.html">Contact Us</a></li>
                         <li class="active"><a href="AboutUs.html">About Us</a></li>
-                        <li ng-show="myVar"><a href="AccountManagement.html">Account</a></li>
-                        <li ng-hide="myVar"><a href="SignUp.html">Sign Up</a></li>
-                        <li ng-hide="myVar"><a href="LogIn.html">Log In</a></li>
+                        <li ng-show="loggedIn"><a href="AccountManagement.html">Account</a></li>
+                        <li ng-hide="loggedIn"><a href="SignUp.html">Sign Up</a></li>
+                        <li ng-hide="loggedIn"><a href="LogIn.html">Log In</a></li>
                     </ul>        
                 </div>
             </div>
         </div>
-        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-        Logged in: <input type="checkbox" ng-model="myVar">
     </header>
     <!-- /header -->
 
@@ -89,6 +88,14 @@
             </div>
         </div>
     </footer>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/factories/accountFactory.js"></script>
+    <script src="js/controllers/accountController.js"></script>
+
 </div>
 </body>
 </html>

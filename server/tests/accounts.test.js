@@ -6,6 +6,8 @@ var should = require('should'),
 account = {
     email: "bill@gmail.com",
     password: "epic_meme",
+    fullName: "Bill Billson",
+    phoneNum: "867-5309"
 };
 
 describe('Account schema tests', function () {
