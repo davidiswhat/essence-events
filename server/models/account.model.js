@@ -15,6 +15,10 @@ var userAccSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  fullName: {
+    type: String,
+    required: true
+  },
   isAdmin: {
     type: Boolean,
     required: true,
