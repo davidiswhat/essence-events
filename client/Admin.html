@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> 
+<html class="no-js"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Account</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+    <link rel="stylesheet" href="css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/sl-slide.css">
+    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+    <link rel="shortcut icon" href="images/favicon.png">
+    <!--Hopefully this + width device does mobile. https://www.w3schools.com/whatis/whatis_bootstrap.asp Actually crashes. Idk why-->
+</head>
+<style>
+    h4 { 
+        font-size: 2em;
+    }
+    label {
+        display: inline-block;
+        width: 200px;
+        text-align: left;
+    }​
+</style>
+<body ng-app="">
+    <!--Header-->
+    <header class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+            <div class="container">
+                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </a>
+                <img src="images/logoReplace.webp" class="pull-left" href="index.html"></img>
+                <div class="nav-collapse collapse pull-left">
+                    <ul class="nav">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="Calendar.html">Calendar</a></li>
+                        <li><a href="Services.html">Services</a></li>
+                        <li><a href="Testimonials.html">Testimonials</a></li>
+                        <li><a href="ContactUs.html">Contact Us</a></li>
+                        <li><a href="AboutUs.html">About Us</a></li>
+                        <li class="active"><a href="AccountManagement.html">Account</a></li>
+                    </ul>        
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- /header -->
+    <section class="no-margin">
+        <div id="map" style="height:50px;"></div>
+    </section>
+    <section id="contact-page" class="container">
+        <div class="row">
+            <div class="span12">
+                <h4 align="center">Account Management</h4>
+                <div class="status alert alert-success" style="display: none"></div>
+                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="contact-us.send.php">
+                    <div class="row">
+                        <div class="span12">
+                            <div class="block">
+                                <label>Name: First Name Last Name</label>
+                                <button type="submit" class="btn btn-primary btn-small">Change Name</button>
+                            </div>
+                            <br>
+                            <div class="block">
+                                <label>Email: example@gmail.com </label>
+                                <button type="submit" class="btn btn-primary btn-small">Change Email</button>
+                            </div>
+                            <br>
+                            <div class="block">
+                                <button type="submit" class="btn btn-primary btn-small">Change Password</button>
+                            </div>
+                            <br>
+                            <div class="block">
+                                <button type="submit" class="btn btn-primary btn-small">Delete Account</button>
+                            </div>
+                            <br>
+                        </div>
+                    </div>
+                </form>
+            </div>   
+        </div>
+    </section>
+    <!--Footer-->
+    <div class="fixedBot2">
+    <footer id="footer">
+        <div class="container">
+            <div class="row-fluid">
+                <div class="span5 cp">
+                    &copy; 2023 <a target="_blank" href="http://www.domain.com/"> by Essense Events</a>
+                </div>
+                <div class="span6">
+                    <ul class="social pull-right">
+                        <li><a href="#"><i class="icon-facebook"></i></a></li>
+                        <li><a href="#"><i class="icon-pinterest"></i></a></li>
+                        <li><a href="#"><i class="icon-instagram"></i></a></li>  
+                        <li><a href="#"><i class="icon-linkedin"></i></a></li>                 
+                    </ul>
+                </div>
+                <div class="span1">
+                    <a id="gototop" class="gototop pull-right" href="#"><i class="icon-angle-up"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    </div>
+</body>
+</html>
