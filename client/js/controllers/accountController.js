@@ -1,18 +1,21 @@
+var lastError = undefined;
 angular.module('accounts').controller('AccountsController', ['$scope', 'Accounts', 
   function($scope, Accounts) {
 
     $scope.createAccount = function() {
       console.log("test1");
+      console.log($scope.newAccount);
       Accounts.createAccount($scope.newAccount).then(
         function(result){
           console.log("callback");
           console.log(result);
-          alert("Account Made");
+          alert("Account creation successful.");
           window.location.replace("/AccountManagement.html");
           return result;
         },
         function(error){
           console.log("error callback");
+          lastError = error;
           console.log(error.data.error);
           alert(error.data.error);
           return error;

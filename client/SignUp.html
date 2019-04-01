@@ -64,6 +64,10 @@
                 
                 <form novalidate class="simple-form">
                     <h2>Create Account</h2>
+                    <label>Name: </label>
+                    <input type="text" ng-model="newAccount.fullName" /><br />
+                    <label>Phone Number: </label>
+                    <input type="text" ng-model="newAccount.phoneNum" /><br />
                     <label>Email: </label>
                     <input type="text" ng-model="newAccount.email" /><br />
                     <label>Password: </label>
@@ -78,7 +82,7 @@
         </div>
         <font size="3">
         <div class = "other">
-            Already Signed up?<a href="url">Log in</a>
+            Already signed up? <a href="url">Log in</a>
         </div>
         </font>
         

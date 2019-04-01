@@ -38,7 +38,8 @@ router.route('/')
       }
       User.create(userData, function (error, user) {
         if (error) {
-          res.status(400).send(error);
+          console.log(error);
+          res.status(400).json({"error": "Email already in use."});
         } else {
           req.session.userId = user._id;
           res.json(user);
@@ -49,18 +50,14 @@ router.route('/')
     } else if (req.body.logemail && req.body.logpassword) {
       User.authenticate(req.body.logemail, req.body.logpassword, function (error, user) {
         if (error || !user) {
-          var err = new Error('Wrong email or password.');
-          err.status = 401;
-          return next(err);
+          res.status(400).json({"error": "Wrong email or password."});
         } else {
           req.session.userId = user._id;
           return res.redirect('/AccountManagement.html');
         }
       });
     } else {
-      var err = new Error('All fields required.');
-      err.status = 400;
-      return next(err);
+      res.status(400).json({"error": "Please fill out all fields."});
     }
   })
   
