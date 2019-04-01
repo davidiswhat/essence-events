@@ -36,9 +36,6 @@
     .next3 {
         margin-left: 50px;
     }
-    .end {
-        display: none;
-    }
     img {
         float: left;
     }
@@ -96,6 +93,7 @@ $('body').on('click', '.back', function() {
     if(nextId ==9){
         nextId=6;
     }
+    console.log(nextId);
     $('[data-id="'+id+'"]').hide();
     $('[data-id="'+nextId+'"]').show();
 
@@ -122,8 +120,9 @@ $('body').on('click', '.back2', function() {
         prevId=8;
     }
     console.log(prevId);
+    console.log(id);
     $('[data-id="'+id+'"]').hide();
-    $('[data-id="'+7+'"]').show();
+    $('[data-id="'+prevId+'"]').show();
     $('.next2').show();
 });
 /**********Repetition********/
@@ -222,6 +221,10 @@ $('body').on('click', '.back2', function() {
         <p font size="16">Placeholder for text2 </p>
     </div>
     <div class="content2" id="content-8" data-id='8'>
+        <p font size="16"> <img src="images/ImageOfPerson3.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
+        <p font size="16">Placeholder for text3 </p>
+    </div>
+    <div class="content2" id="content-9" data-id='9'>
         <p font size="16"> <img src="images/ImageOfPerson3.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
         <p font size="16">Placeholder for text3 </p>
     </div>
