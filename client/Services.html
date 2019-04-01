@@ -17,7 +17,8 @@
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/sl-slide.css">
     <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    
     <link rel="shortcut icon" href="images/favicon.png">
     <!--Hopefully this + width device does mobile. https://www.w3schools.com/whatis/whatis_bootstrap.asp Actually crashes. Idk why-->
 </head>
@@ -63,41 +64,22 @@
     <section id="contact-page" class="container">
         <div id="map" style="height:10px;"></div>
         <div class="BigFontZone">
-            <p class="center" font size="16">Placeholder page</p>
-            <input type="button" id="sales" value="Sales" />
-            <div id="piechart" align='center'></div>
-            <script type="text/javascript">
-                //Sources: 
-                //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_google_pie_chart
-                //https://stackoverflow.com/questions/47182697/show-google-chart-on-button-click
-                //https://stackoverflow.com/questions/11249439/displaying-currency-in-google-chart-api
-                //https://stackoverflow.com/questions/38161862/change-google-chart-data-and-appearance-with-button
-                // Load google charts
-                google.charts.load('current', {'packages':['corechart']});
-                google.charts.setOnLoadCallback(drawChart);
-                
-                // Draw the chart and set the chart values
-                function drawChart() {
-                var data = google.visualization.arrayToDataTable([
-                ['Task', 'Hours per Day'],
-                ['Checkbox1', 100.70],
-                ['Checkbox2', 200.00],
-                ['Checkbox3', 400.00],
-                ['Checkbox4', 10.00],
-                ['Checkbox5', 20.00]
-                ]);
-                var formatter = new google.visualization.NumberFormat({groupingSymbol: ',', negativeColor: 'red', negativeParens: true, prefix: '$ '});
-                formatter.format(data, 1);
-                // Optional; add a title and set the width and height of the chart
-                var options = {'title':'Your cost distribution:', 'width':700, 'height':700, backgroundColor: '#E4E4E4',};
-                
-                // Display the chart inside the <div> element with id="piechart"
-                var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-                document.getElementById('sales').addEventListener('click', function () {
-                chart.draw(data, options);
-                }, false);
-                }
-            </script>
+            <p class="center" font size="16">Calculate Your Cost Distribution:</p>
+            <form id = "pickValues">
+                Red  ($1250.99) <input type="checkbox" name="color[]" id="red" value="1250.99">
+                Green  ($200.50) <input type="checkbox" name="color[]" id="green" value="200.50">
+                Blue  ($300.50) <input type="checkbox" name="color[]" id="blue" value="300.50">
+                Cyan  ($300.50) <input type="checkbox" name="color[]" id="cyan" value="300.50">
+                Magenta  ($300.00) <input type="checkbox" name="color[]" id="magenta" value="300.00">
+                Yellow  ($1250.99) <input type="checkbox" name="color[]" id="yellow" value="1250.99">
+                Black  ($1250.99) <input type="checkbox" name="color[]" id="black" value="1250.99">
+                <br>
+                <br>
+                <button type="button"  id="piechart">Click Me!</button>
+                <!--input type="button" id="piechart" value="Piechart" onclick="drawChart();"/-->
+                <div id="piechart2" align='center'></div>
+            </form>
+            
         </div>
 
         
@@ -132,5 +114,82 @@
     <script src="js/app.js"></script>
     <script src="js/factories/accountFactory.js"></script>
     <script src="js/controllers/accountController.js"></script>
+    </footer>
+    <script type="text/javascript">
+    
+        
+        //Sources: 
+        //https://www.w3schools.com/howto/tryit.asp?filename=tryhow_google_pie_chart
+        //https://stackoverflow.com/questions/47182697/show-google-chart-on-button-click
+        //https://stackoverflow.com/questions/11249439/displaying-currency-in-google-chart-api
+        //https://stackoverflow.com/questions/38161862/change-google-chart-data-and-appearance-with-button
+        // Load google charts
+        google.charts.load('current', {'packages':['corechart']});
+        //google.charts.setOnLoadCallback(drawChart);
+        
+        // Draw the chart and set the chart values
+        
+        function drawChart() {
+        
+        var colors = document.forms['pickValues'].elements[ 'color[]' ];
+        //alert(colors.length );
+        //https://www.dyn-web.com/tutorials/forms/checkbox/same-name-group.php
+        for (var i=0, len=colors.length; i<len; i++) {
+            colors[i].onclick = doSomething;
+        }
+        function doSomething() {
+            //alert(colors[0].value );
+            if ( this.checked ) {
+                // if checked ...
+                //alert( this.value );
+            } else {
+                // if not checked ...
+            }
+        }
+        function doSomething2(index) {
+            //alert(colors[0].value );
+            if ( colors[index].checked ) {
+                // if checked ...
+                return Number(colors[index].value);
+            } else {
+                return 0;
+            }
+        }      
+        var data = google.visualization.arrayToDataTable([
+        ['Task', 'Hours per Day'],
+        ['Checkbox1', doSomething2(0)],
+        ['Checkbox2', doSomething2(1)],
+        ['Checkbox3', doSomething2(2)],
+        ['Checkbox4', doSomething2(3)],
+        ['Checkbox5', doSomething2(4)],
+        ['Checkbox6', doSomething2(5)],
+        ['Checkbox7', doSomething2(6)],
+        ]);
+        var formatter = new google.visualization.NumberFormat({groupingSymbol: ',', negativeColor: 'red', negativeParens: true, prefix: '$ '});
+        formatter.format(data, 1);
+        // Optional; add a title and set the width and height of the chart
+        var options = {'title':'Your cost distribution:', 'width':700, 'height':700, backgroundColor: '#ffc8e8',};
+        
+        // Display the chart inside the <div> element with id="piechart"
+        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+        chart.draw(data, options);
+        
+        }
+        let button = document.getElementById('piechart');
+        console.log(button);
+        button.addEventListener('click', function () {
+            //chart.draw(data, options);
+            drawChart();
+        }, false);
+        
+        /*
+        $(document).ready(function(){
+            $("#piechart").click(function(){
+                google.charts.load('current', {'packages':['corechart']});
+                google.charts.setOnLoadCallback(drawChart);
+        })
+        });
+        */
+    </script> 
 </body>
 </html>

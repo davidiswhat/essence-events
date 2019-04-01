@@ -1,33 +1,169 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!--> 
-<html class="no-js"> <!--<![endif]-->
+<html class="no-js">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title>Testimonials</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
-    <link rel="stylesheet" href="css/font-awesome.min.css">
-    <link rel="stylesheet" href="css/main.css">
-    <link rel="stylesheet" href="css/sl-slide.css">
-    <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-    <link rel="shortcut icon" href="images/favicon.png">
-    <!--Hopefully this + width device does mobile. https://www.w3schools.com/whatis/whatis_bootstrap.asp Actually crashes. Idk why-->
-</head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>Testimonials</title>
+<meta name="description" content="">
+<meta name="keywords" content="">
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/sl-slide.css">
+<script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+<link rel="shortcut icon" href="images/favicon.png">
 <style>
-    h4 { 
-        font-size: 2em;
+    .content {
+        display: none;
+    }
+    .content2{
+        display: none;
+    }
+    .content3{
+        display: none;
+    }
+    button {
+        margin-top: 30px;
+    }
+    .next {
+        margin-left: 50px;
+    }
+    .next2 {
+        margin-left: 50px;
+    }
+    .next3 {
+        margin-left: 50px;
+    }
+    img {
+        float: left;
     }
 </style>
 <body ng-app="essenceEvents" ng-controller="AccountsController">
     <p id="checkLogIn()"></p>
     <!--Header-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script>
+    //ctrl k c to comment in html / javascript (cant reverse, dont do it)
+$(document).ready(function(){
+    //$('[data-id="'+7+'"]').hide();
+    //$('[data-id="'+8+'"]').hide();
+  $('body').on('click', '.next', function() { 
+    var id = $('.content:visible').data('id');
+    var nextId = $('.content:visible').data('id')+1;
+    if(nextId ==4){
+        nextId=1;
+    }
+    $('[data-id="'+id+'"]').hide();
+    $('[data-id="'+nextId+'"]').show();
+    
+    if($('.back:hidden').length == 1){
+        $('.back').show();
+    }
+    /*
+    if(nextId==3){
+        $('.next').hide();
+    }*/
+    
+    // if(nextId == 3){
+	//     $('.content-holder').hide();
+	//     $('.end').show();
+    // }
+});
+
+$('body').on('click', '.back', function() { 
+    var id = $('.content:visible').data('id');
+    var prevId = $('.content:visible').data('id')-1;
+    if(prevId ==0){
+        prevId=3;
+    }
+    $('[data-id="'+id+'"]').hide();
+    $('[data-id="'+prevId+'"]').show();
+    $('.next').show();
+});
+
+// $('body').on('click', '.edit-previous', function() { 
+// 	$('.end').hide();
+//     $('.content-holder').show();
+//     $('#content-3').show();
+// });
+
+/**********Repetition********/
+  $('body').on('click', '.next2', function() { 
+    var id = $('.content2:visible').data('id');
+    var nextId = $('.content2:visible').data('id')+1;
+    if(nextId ==9){
+        nextId=6;
+    }
+    console.log(nextId);
+    $('[data-id="'+id+'"]').hide();
+    $('[data-id="'+nextId+'"]').show();
+
+    if($('.back2:hidden').length == 1){
+        $('.back2').show();
+    }
+    
+    
+    /*
+    if(nextId==3){
+        $('.next').hide();
+    }*/
+    
+    // if(nextId == 3){
+	//     $('.content-holder').hide();
+	//     $('.end').show();
+    // }
+});
+
+$('body').on('click', '.back2', function() { 
+    var id = $('.content2:visible').data('id');
+    var prevId = $('.content2:visible').data('id')-1;
+    if(prevId ==5){
+        prevId=8;
+    }
+    console.log(prevId);
+    console.log(id);
+    $('[data-id="'+id+'"]').hide();
+    $('[data-id="'+prevId+'"]').show();
+    $('.next2').show();
+});
+/**********Repetition********/
+$('body').on('click', '.next3', function() { 
+    var id = $('.content3:visible').data('id');
+    var nextId = $('.content3:visible').data('id')+1;
+    if(nextId ==14){
+        nextId=11;
+    }
+    $('[data-id="'+id+'"]').hide();
+    $('[data-id="'+nextId+'"]').show();
+    
+    
+    /*
+    if(nextId==3){
+        $('.next').hide();
+    }*/
+    
+    // if(nextId == 3){
+	//     $('.content-holder').hide();
+	//     $('.end').show();
+    // }
+});
+
+$('body').on('click', '.back2', function() { 
+    var id = $('.content2:visible').data('id');
+    var prevId = $('.content2:visible').data('id')-1;
+    if(prevId ==10){
+        prevId=13;
+    }
+    $('[data-id="'+id+'"]').hide();
+    $('[data-id="'+prevId+'"]').show();
+    $('.next2').show();
+});
+});
+</script>
+</head>
+<body ng-app="">
     <header class="navbar navbar-fixed-top">
         <div class="navbar-inner">
             <div class="container">
@@ -53,22 +189,77 @@
             </div>
         </div>
     </header>
-    <!-- /header -->
-
     <section class="no-margin">
         <div id="map" style="height:70px;"></div>
     </section>
-
     <section id="contact-page" class="container">
-        <div id="map" style="height:10px;"></div>
-        <div class="BigFontZone">
-            <p class="center" font size="16">Placeholder page</p>
-        </div>
-
-        
+    <div class="BigFontZone">
+    <p font size="16">Celebrations: </p>
+    <div class="content" id="content-1" data-id='1' style="display: block;">
+        <p font size="16"> <img src="images/ImageOfPerson.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Celebrations: </p>
+        <p font size="16">Placeholder for text </p>
+    </div>
+    <div class="content" id="content-2" data-id='2'>
+        <p font size="16"> <img src="images/ImageOfPerson2.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Corporate: </p>
+        <p font size="16">Placeholder for text2 </p>
+    </div>
+    <div class="content" id="content-3" data-id='3'>
+        <p font size="16"> <img src="images/ImageOfPerson3.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
+        <p font size="16">Placeholder for text3 </p>
+    </div>
+    <button type="button" class="back">Back</button>
+    <button type="button" class="next">Next</button>
+    </div>
+    <br>
+    <br>
+    <br>    
+    <div class="BigFontZone">
+    <p font size="16">Corporate: </p>
+    <div class="content2" id="content-6" data-id='6' style="display: block;">
+        <p font size="16"> <img src="images/ImageOfPerson.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Celebrations: </p>
+        <p font size="16">Placeholder for text </p>
+    </div>
+    <div class="content2" id="content-7" data-id='7'>
+        <p font size="16"> <img src="images/ImageOfPerson2.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Corporate: </p>
+        <p font size="16">Placeholder for text2 </p>
+    </div>
+    <div class="content2" id="content-8" data-id='8'>
+        <p font size="16"> <img src="images/ImageOfPerson3.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
+        <p font size="16">Placeholder for text3 </p>
+    </div>
+    <div class="content2" id="content-9" data-id='9'>
+        <p font size="16"> <img src="images/ImageOfPerson3.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
+        <p font size="16">Placeholder for text3 </p>
+    </div>
+    <button type="button" class="back2">Back</button>
+    <button type="button" class="next2">Next</button>
+    </div>
+    <br>
+    <br>
+    <br>    
+    <div class="BigFontZone">
+    <p font size="16">Weddings: </p>
+    <div class="content3" id="content-11" data-id='11' style="display: block;">
+        <p font size="16"> <img src="images/ImageOfPerson.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Celebrations: </p>
+        <p font size="16">Placeholder for text </p>
+    </div>
+    <div class="content3" id="content-12" data-id='12'>
+        <p font size="16"> <img src="images/ImageOfPerson2.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Corporate: </p>
+        <p font size="16">Placeholder for text2 </p>
+    </div>
+    <div class="content3" id="content-13" data-id='13'>
+        <p font size="16"> <img src="images/ImageOfPerson3.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
+        <p font size="16">Placeholder for text3 </p>
+    </div>
+    <button type="button" class="back3">Back</button>
+    <button type="button" class="next3">Next</button>
+    </div>
     </section>
-    <!--Footer-->
-    <div class="fixedBot2">
+    <!-- <div class="end" data-id='4'>
+        <p>Congratulation! You are done!</p>
+        <button type="button" class="edit-previous">Edit Previous Options</button>
+    </div> -->
+    <div class="fixedBot">
     <footer id="footer">
         <div class="container">
             <div class="row-fluid">
