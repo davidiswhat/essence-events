@@ -16,6 +16,21 @@ router.route('/status')
     }
   });
 
+router.route("/logout")
+  .get(function (req, res) {
+    if (req.session.userId) {
+      req.session.userId = null;
+      console.log("Logged out.")
+      console.log(req.session.userId);
+      res.status(200).send("Logged out.");
+    }
+    else {
+      req.session.userId = null;
+      console.log("Already logged out.")
+      res.status(401).send("Already logged out.")
+    }
+  })
+
 //POST route for updating data
 router.route('/')
   .post(function (req, res, next) {

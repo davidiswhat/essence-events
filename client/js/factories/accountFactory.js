@@ -14,6 +14,9 @@ angular.module('accounts', []).factory('Accounts', function($http) {
     checkLogIn: function() {
 
       return $http.get('/api/authenticate/status');
+    },
+    logOut : function() {
+      return $http.get("/api/authenticate/logout");
     }
   };
 

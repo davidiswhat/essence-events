@@ -1,7 +1,9 @@
 var lastError = undefined;
 angular.module('accounts').controller('AccountsController', ['$scope', 'Accounts', 
   function($scope, Accounts) {
-
+    $scope.logout = function() {
+      Account.logOut();
+    }
     $scope.createAccount = function() {
       console.log("test1");
       console.log($scope.newAccount);
