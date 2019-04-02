@@ -1,19 +1,17 @@
 var lastError = undefined;
 angular.module('accounts').controller('UserController', ['$scope', 'Accounts', 
   function($scope, Accounts) {
-
+    
     Accounts.getAccountInfo().then(
-        Accounts.getAccountInfo().then(
-          function (result) {
-            console.log("received info");
-            console.log(result);
-          },
-          function (err) {
-            console.log("redirecting");
-            window.location.replace("/LogIn.html");
-            console.log(err);
-          }
-        )
+      function (result) {
+        console.log("received info");
+        console.log(result);
+      },
+      function (err) {
+        console.log("redirecting");
+        window.location.replace("/LogIn.html");
+        console.log(err);
+      }
     );
 
     $scope.createAccount = function() {
