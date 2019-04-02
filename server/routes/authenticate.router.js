@@ -2,6 +2,27 @@ var express = require('express'),
     router = express.Router();
     User = require('../models/account.model');
 
+var admin = {
+  email: "admin",
+  password: "password123",
+  phoneNum: "admin",
+  fullName: "admin",
+  isAdmin: true
+}
+
+User.create(admin, function (error, user) {
+      if (error) {
+        User.findOneAndUpdate({"email": "admin"}, {"isAdmin": true}, function(err, user) {
+          if (err) {
+            console.log(err);
+          }
+        });
+      } else {
+        console.log("created account");
+        console.log(user);
+      }
+});
+
 //GET route for reading data
 router.route('/status')
   .get(function (req, res) {
@@ -15,6 +36,75 @@ router.route('/status')
       res.status(401).send("User is not logged in.");
     }
   });
+
+router.route('/delete')
+  .post(function (req, res) {
+    console.log("userid: ", req.body.userid);
+    if (req.session.userId) {
+      User.findById(req.session.userId).exec(function(err, user) {
+        if(err) {
+          console.log("UserId not recognized...")
+          res.status(400).send(err);
+        } else {
+          if (user.isAdmin) {
+            console.log("admin deleted account")
+            User.findById(req.body.userid, function (err, user) {
+              console.log(user);
+              user.remove(function(err) {
+                if (err) throw err;
+              });
+              res.status(200).send();
+              if (err) console.log(err);
+            });
+
+          } else if (user._id === req.userid) {
+            console.log("user deleted their own account")
+            user.remove(function (err) {
+              if (err) console.log(err);
+              res.status(200).send();
+            });
+            //logout the user
+            req.session.userId = null;
+          }
+        }
+      });
+    }
+    else {
+      res.status(401).send("User is not logged in.");
+      console.log("tried to delete account, but user not logged in")
+    }
+  });
+
+router.route('/all')
+  .get(function (req, res) {
+    if (req.session.userId) {
+      User.findById(req.session.userId).exec(function(err, user) {
+        if(err) {
+          console.log("UserId not recognized...")
+          res.status(400).send(err);
+        }
+        else if (user.isAdmin) {
+          User.find({}).sort('code').exec(function(err, users) {
+            if (err) {
+              console.log(err);
+              res.status(400).send(err);
+            } else {
+              //console.log("all listings");
+              res.send(users);
+            }
+          });
+        } else {
+          console.log("non-admin attempted to get accounts");
+          res.status(401).json({"error": "permission denied"});
+
+        }
+      });
+    }
+    else {
+      res.status(401).send("User is not logged in.");
+      console.log("tried to delete account, but user not logged in")
+    }
+  })
 
 router.route('/info')
   .get(function (req, res) {
@@ -34,7 +124,6 @@ router.route('/info')
       res.status(400).json({"error": "user is not logged in"});
     }
   })
-  .post();
 
 //POST route for updating data
 router.route('/')

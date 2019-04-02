@@ -1,12 +1,24 @@
 var lastError = undefined;
-angular.module('accounts').controller('UserController', ['$scope', 'Accounts', 
+angular.module('accounts').controller('AdminController', ['$scope', 'Accounts', 
   function($scope, Accounts) {
+
+    Accounts.getAll().then(function(response) {
+      $scope.users = response.data;
+    }, function(error) {
+      if (error.data.error == "permission denied") {
+        console.log('permission denied');
+        window.location.replace("/AccountManagement.html");
+      }
+      else {
+        console.log('Unable to retrieve information:', error);
+      }
+    });
+
 
     Accounts.getAccountInfo().then(
       function (result) {
         console.log("received info");
         console.log(result);
-        $scope.userinfo = result.data;
       },
       function (err) {
         console.log("redirecting");
@@ -14,6 +26,22 @@ angular.module('accounts').controller('UserController', ['$scope', 'Accounts',
         console.log(err);
       }
     );
+
+    $scope.deleteUser = function (userid) {
+      if (confirm("Are you sure you want to delete this account?"))
+      {
+        result = Accounts.delete(userid).then(function(response) {
+          console.log("deleted");
+          console.log("refreshing");
+          Accounts.getAll().then(function(response) {
+            $scope.users = response.data;
+          }, function(error) {
+            console.log('Unable to retrieve listings:', error);
+          });
+        });
+        console.log(result);
+      }
+    };
 
     $scope.createAccount = function() {
       console.log("test1");
