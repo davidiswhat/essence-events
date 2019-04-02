@@ -11,6 +11,11 @@ angular.module('accounts', []).factory('Accounts', function($http) {
       return $http.post('/api/authenticate', Account);
     },
 
+    
+    getAccountInfo: function() {
+      return $http.get('/api/authenticate/info');
+    },
+
     checkLogIn: function() {
 
       return $http.get('/api/authenticate/status');

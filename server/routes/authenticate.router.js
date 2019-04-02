@@ -11,10 +11,31 @@ router.route('/status')
       res.status(200).send("Logged in.");
     }
     else {
-      console.log("User is not logged in")
-      res.status(401).send("User is not logged in.")
+      console.log("User is not logged in");
+      res.status(401).send("User is not logged in.");
     }
   });
+
+router.route('/info')
+  .get(function (req, res) {
+    if (req.session.userId) {
+      console.log("User requested info");
+      User.findById(req.session.userId).exec(function(err, user) {
+        if(err) {
+          console.log("UserId not recognized...")
+          res.status(400).send(err);
+        } else {
+          req.user = user;
+          next();
+        }
+      });
+    }
+    else {
+      console.log("User requested info, but is not logged in.");
+      res.redirect('/LogIn.html');
+    }
+  })
+  .post();
 
 //POST route for updating data
 router.route('/')

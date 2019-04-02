@@ -47,6 +47,20 @@ angular.module('accounts').controller('AccountsController', ['$scope', 'Accounts
        );
     };
 
+    $scope.getUserInfo = function () {
+      console.log("checking info");
+      Accounts.getUserInfo().then(
+        function (result) {
+          console.log("received info");
+          $scope.userinfo = result.user; 
+        },
+        function (err) {
+          console.log("no info received");
+          console.log(err);
+        }
+      )
+    }
+
     $scope.checkLogIn = function() {
       console.log("Checking Log in Status");
 
@@ -62,6 +76,6 @@ angular.module('accounts').controller('AccountsController', ['$scope', 'Accounts
          $scope.loggedIn = false;
         }
       );
-    }();
+    };
   }
 ]);

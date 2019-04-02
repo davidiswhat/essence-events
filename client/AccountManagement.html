@@ -28,9 +28,10 @@
         display: inline-block;
         width: 200px;
         text-align: left;
-    }​
+    }
 </style>
 <body ng-app="">
+    <p id="getUserInfo()"></p>
     <!--Header-->
     <header class="navbar navbar-fixed-top">
         <div class="navbar-inner">
@@ -68,12 +69,17 @@
                     <div class="row">
                         <div class="span12">
                             <div class="block">
-                                <label>Name: First Name Last Name</label>
+                                <label>Name: {{ userinfo.fullname }} </label>
                                 <button type="submit" class="btn btn-primary btn-small">Change Name</button>
                             </div>
                             <br>
                             <div class="block">
-                                <label>Email: example@gmail.com </label>
+                                <label>Email: {{ userinfo.email }} </label>
+                                <button type="submit" class="btn btn-primary btn-small">Change Email</button>
+                            </div>
+                            <br>
+                            <div class="block">
+                                <label>Phone: {{ userinfo.phoneNum }} </label>
                                 <button type="submit" class="btn btn-primary btn-small">Change Email</button>
                             </div>
                             <br>
