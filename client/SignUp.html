@@ -47,6 +47,7 @@
                         <!--<li><a href="AccountManagement.html">Account</a></li>-->
                         <li class="active"><a href="SignUp.html">Sign Up</a></li>
                         <li><a href="LogIn.html">Log In</a></li>
+                        <li ng-show="loggedIn"><a ng-click="logout()">Log Out</a></li>
                     </ul>        
                 </div>
             </div>
@@ -90,7 +91,7 @@
 
     </section>
     <!--Footer-->
-    <div class="fixedBot2">
+    <div class="fixedBot">
         <footer id="footer">
             <div class="container">
                 <div class="row-fluid">

@@ -109,7 +109,7 @@ router.route('/all')
       res.status(401).send("User is not logged in.");
       console.log("tried to delete account, but user not logged in")
     }
-  })
+  });
 
 router.route('/info')
   .get(function (req, res) {
@@ -128,7 +128,21 @@ router.route('/info')
       console.log("User requested info, but is not logged in.");
       res.status(400).json({"error": "user is not logged in"});
     }
-  })
+  });
+router.route("/logout")
+  .get(function (req, res) {
+    if (req.session.userId) {
+      console.log(req.session.userId);
+      req.session.userId = null;
+      console.log("Logged out.")
+      res.status(200).send("Logged out.");
+    }
+    else {
+      req.session.userId = null;
+      console.log("Already logged out.")
+      res.status(401).send("Already logged out.")
+    }
+  });
 
 //POST route for updating data
 router.route('/')

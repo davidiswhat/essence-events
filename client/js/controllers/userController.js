@@ -15,6 +15,16 @@ angular.module('accounts').controller('UserController', ['$scope', 'Accounts',
       }
     );
 
+    $scope.logout = function() {
+      console.log("Attempting to Log out");
+      Accounts.logOut().then( function(result) {
+        window.location.replace("/index.html");
+      },
+      function (error) {
+        window.location.replace("/index.html");
+      });
+    };
+
     $scope.deleteUser = function () {
       if (confirm("Are you sure you want to delete your account?"))
       {
