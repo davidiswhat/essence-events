@@ -1,9 +1,14 @@
 var lastError = undefined;
 angular.module('accounts').controller('AccountsController', ['$scope', 'Accounts', 
   function($scope, Accounts) {
+
     $scope.logout = function() {
-      Account.logOut();
-    }
+      console.log("Attempting to Log out");
+      Accounts.logOut();
+      //alert("Loging Out.");
+      //window.location.replace("/index.html");
+    };
+
     $scope.createAccount = function() {
       console.log("test1");
       console.log($scope.newAccount);

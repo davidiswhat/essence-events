@@ -30,7 +30,7 @@
         text-align: left;
     }​
 </style>
-<body ng-app="">
+<body ng-app="essenceEvents" ng-controller="AccountsController">
     <!--Header-->
     <header class="navbar navbar-fixed-top">
         <div class="navbar-inner">
@@ -50,6 +50,7 @@
                         <li><a href="ContactUs.html">Contact Us</a></li>
                         <li><a href="AboutUs.html">About Us</a></li>
                         <li class="active"><a href="AccountManagement.html">Account</a></li>
+                        <li><a ng-click="logout()" href="index.html">Log Out</a></li>
                     </ul>        
                 </div>
             </div>
