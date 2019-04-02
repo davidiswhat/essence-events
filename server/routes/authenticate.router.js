@@ -25,14 +25,13 @@ router.route('/info')
           console.log("UserId not recognized...")
           res.status(400).send(err);
         } else {
-          req.user = user;
-          next();
+          res.json(user);
         }
       });
     }
     else {
       console.log("User requested info, but is not logged in.");
-      res.redirect('/LogIn.html');
+      res.status(400).json({"error": "user is not logged in"});
     }
   })
   .post();
