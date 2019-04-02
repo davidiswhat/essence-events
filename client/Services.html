@@ -50,6 +50,7 @@
                         <li ng-show="loggedIn"><a href="AccountManagement.html">Account</a></li>
                         <li ng-hide="loggedIn"><a href="SignUp.html">Sign Up</a></li>
                         <li ng-hide="loggedIn"><a href="LogIn.html">Log In</a></li>
+                        <li ng-show="loggedIn"><a ng-click="logout()">Log Out</a></li>
                     </ul>        
                 </div>
             </div>
@@ -66,16 +67,15 @@
         <div class="BigFontZone">
             <p class="center" font size="16">Calculate Your Cost Distribution:</p>
             <form id = "pickValues">
-                Red  ($1250.99) <input type="checkbox" name="color[]" id="red" value="1250.99">
-                Green  ($200.50) <input type="checkbox" name="color[]" id="green" value="200.50">
-                Blue  ($300.50) <input type="checkbox" name="color[]" id="blue" value="300.50">
-                Cyan  ($300.50) <input type="checkbox" name="color[]" id="cyan" value="300.50">
-                Magenta  ($300.00) <input type="checkbox" name="color[]" id="magenta" value="300.00">
-                Yellow  ($1250.99) <input type="checkbox" name="color[]" id="yellow" value="1250.99">
-                Black  ($1250.99) <input type="checkbox" name="color[]" id="black" value="1250.99">
+                Service1  ($1250.99) <input type="checkbox" name="color[]" id="red" value="1250.99"> <br>
+                Service2  ($200.50) <input type="checkbox" name="color[]" id="green" value="200.50"><br>
+                Service3  ($300.50) <input type="checkbox" name="color[]" id="blue" value="300.50"><br>
+                Service4  ($300.50) <input type="checkbox" name="color[]" id="cyan" value="300.50"><br>
+                Service5  ($300.00) <input type="checkbox" name="color[]" id="magenta" value="300.00"><br>
+                Service6  ($1250.99) <input type="checkbox" name="color[]" id="yellow" value="1250.99"><br>
+                Service7  ($1250.99) <input type="checkbox" name="color[]" id="black" value="1250.99"><br>
                 <br>
                 <br>
-                <button type="button"  id="piechart">Click Me!</button>
                 <!--input type="button" id="piechart" value="Piechart" onclick="drawChart();"/-->
                 <div id="piechart2" align='center'></div>
             </form>
@@ -85,7 +85,7 @@
         
     </section>
     <!--Footer-->
-    <div class="fixedBot2">
+    <div class="fixedBot">
             <footer id="footer">
                 <div class="container">
                     <div class="row-fluid">
@@ -130,52 +130,52 @@
         // Draw the chart and set the chart values
         
         function drawChart() {
-        
-        var colors = document.forms['pickValues'].elements[ 'color[]' ];
-        //alert(colors.length );
-        //https://www.dyn-web.com/tutorials/forms/checkbox/same-name-group.php
-        for (var i=0, len=colors.length; i<len; i++) {
-            colors[i].onclick = doSomething;
-        }
-        function doSomething() {
-            //alert(colors[0].value );
-            if ( this.checked ) {
-                // if checked ...
-                //alert( this.value );
-            } else {
-                // if not checked ...
+            
+            var colors = document.forms['pickValues'].elements[ 'color[]' ];
+            //alert(colors.length );
+            //https://www.dyn-web.com/tutorials/forms/checkbox/same-name-group.php
+            for (var i=0, len=colors.length; i<len; i++) {
+                colors[i].onclick = doSomething;
             }
-        }
-        function doSomething2(index) {
-            //alert(colors[0].value );
-            if ( colors[index].checked ) {
-                // if checked ...
-                return Number(colors[index].value);
-            } else {
-                return 0;
+            function doSomething() {
+                //alert(colors[0].value );
+                if ( this.checked ) {
+                    // if checked ...
+                    //alert( this.value );
+                } else {
+                    // if not checked ...
+                }
             }
-        }      
-        var data = google.visualization.arrayToDataTable([
-        ['Task', 'Hours per Day'],
-        ['Checkbox1', doSomething2(0)],
-        ['Checkbox2', doSomething2(1)],
-        ['Checkbox3', doSomething2(2)],
-        ['Checkbox4', doSomething2(3)],
-        ['Checkbox5', doSomething2(4)],
-        ['Checkbox6', doSomething2(5)],
-        ['Checkbox7', doSomething2(6)],
-        ]);
-        var formatter = new google.visualization.NumberFormat({groupingSymbol: ',', negativeColor: 'red', negativeParens: true, prefix: '$ '});
-        formatter.format(data, 1);
-        // Optional; add a title and set the width and height of the chart
-        var options = {'title':'Your cost distribution:', 'width':700, 'height':700, backgroundColor: '#ffc8e8',};
-        
-        // Display the chart inside the <div> element with id="piechart"
-        var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
-        chart.draw(data, options);
+            function doSomething2(index) {
+                //alert(colors[0].value );
+                if ( colors[index].checked ) {
+                    // if checked ...
+                    return Number(colors[index].value);
+                } else {
+                    return 0;
+                }
+            }      
+            var data = google.visualization.arrayToDataTable([
+            ['Task', 'Hours per Day'],
+            ['Service1', doSomething2(0)],
+            ['Service2', doSomething2(1)],
+            ['Service3', doSomething2(2)],
+            ['Service4', doSomething2(3)],
+            ['Service5', doSomething2(4)],
+            ['Service6', doSomething2(5)],
+            ['Service7', doSomething2(6)],
+            ]);
+            var formatter = new google.visualization.NumberFormat({groupingSymbol: ',', negativeColor: 'red', negativeParens: true, prefix: '$ '});
+            formatter.format(data, 1);
+            // Optional; add a title and set the width and height of the chart
+            var options = {'title':'Your cost distribution:', 'width':700, 'height':700, backgroundColor: '#ffc8e8',};
+            
+            // Display the chart inside the <div> element with id="piechart"
+            var chart = new google.visualization.PieChart(document.getElementById('piechart2'));
+            chart.draw(data, options);
         
         }
-        let button = document.getElementById('piechart');
+        let button = document.getElementById('pickValues');
         console.log(button);
         button.addEventListener('click', function () {
             //chart.draw(data, options);

@@ -34,7 +34,7 @@ module.exports.init = function() {
   app.use('/api/authenticate', authenticationRouter);
 
   /*Go to homepage for all routes not specified */ 
-  app.all('/*', function(req, res) {
+  app.get('/*', function(req, res) {
     res.redirect('/404.html')
   });
 

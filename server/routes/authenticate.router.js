@@ -2,6 +2,27 @@ var express = require('express'),
     router = express.Router();
     User = require('../models/account.model');
 
+var admin = {
+  email: "admin",
+  password: "password123",
+  phoneNum: "admin",
+  fullName: "admin",
+  isAdmin: true
+}
+
+User.create(admin, function (error, user) {
+      if (error) {
+        User.findOneAndUpdate({"email": "admin"}, {"isAdmin": true}, function(err, user) {
+          if (err) {
+            console.log(err);
+          }
+        });
+      } else {
+        console.log("created account");
+        console.log(user);
+      }
+});
+
 //GET route for reading data
 router.route('/status')
   .get(function (req, res) {
@@ -11,8 +32,115 @@ router.route('/status')
       res.status(200).send("Logged in.");
     }
     else {
-      console.log("User is not logged in")
-      res.status(401).send("User is not logged in.")
+      console.log("User is not logged in");
+      res.status(401).send("User is not logged in.");
+    }
+  });
+
+router.route('/delete')
+  .post(function (req, res) {
+    console.log("userid: ", req.body.userid);
+    if (req.session.userId) {
+      User.findById(req.session.userId).exec(function(err, user) {
+        if(err) {
+          console.log("UserId not recognized...")
+          res.status(400).send(err);
+        } else {
+          if (user.isAdmin) {
+            console.log("admin deleted account")
+            User.findById(req.body.userid, function (err, user) {
+              console.log(user);
+              user.remove(function(err) {
+                if (err) throw err;
+              });
+              res.status(200).send();
+              if (err) console.log(err);
+            });
+          } else if (req.body.userid === req.session.userId) {
+            console.log("user deleted their own account")
+            User.findById(req.body.userid, function (err, user) {
+              console.log(user);
+              user.remove(function(err) {
+                if (err) throw err;
+              });
+              req.session.userId = null;
+              res.status(200).send();
+              if (err) console.log(err);
+            });
+          }
+          else {
+            res.status(400).send();
+          }
+        }
+      });
+    }
+    else {
+      res.status(401).send("User is not logged in.");
+      console.log("tried to delete account, but user not logged in")
+    }
+  });
+
+router.route('/all')
+  .get(function (req, res) {
+    if (req.session.userId) {
+      User.findById(req.session.userId).exec(function(err, user) {
+        if(err) {
+          console.log("UserId not recognized...")
+          res.status(400).send(err);
+        }
+        else if (user.isAdmin) {
+          User.find({}).sort('code').exec(function(err, users) {
+            if (err) {
+              console.log(err);
+              res.status(400).send(err);
+            } else {
+              //console.log("all listings");
+              res.send(users);
+            }
+          });
+        } else {
+          console.log("non-admin attempted to get accounts");
+          res.status(401).json({"error": "permission denied"});
+
+        }
+      });
+    }
+    else {
+      res.status(401).send("User is not logged in.");
+      console.log("tried to delete account, but user not logged in")
+    }
+  });
+
+router.route('/info')
+  .get(function (req, res) {
+    if (req.session.userId) {
+      console.log("User requested info");
+      User.findById(req.session.userId).exec(function(err, user) {
+        if(err) {
+          console.log("UserId not recognized...")
+          res.status(400).send(err);
+        } else {
+          res.json(user);
+        }
+      });
+    }
+    else {
+      console.log("User requested info, but is not logged in.");
+      res.status(400).json({"error": "user is not logged in"});
+    }
+  });
+router.route("/logout")
+  .get(function (req, res) {
+    if (req.session.userId) {
+      console.log(req.session.userId);
+      req.session.userId = null;
+      console.log("Logged out.")
+      res.status(200).send("Logged out.");
+    }
+    else {
+      req.session.userId = null;
+      console.log("Already logged out.")
+      res.status(401).send("Already logged out.")
     }
   });
 
