@@ -15,6 +15,20 @@ angular.module('accounts').controller('UserController', ['$scope', 'Accounts',
       }
     );
 
+    $scope.deleteUser = function () {
+      if (confirm("Are you sure you want to delete your account?"))
+      {
+        Accounts.delete($scope.userinfo._id).then(function(response) {
+          console.log("deleted");
+          console.log("refreshing");
+          window.location.replace("/index.html");
+        },
+        function (error) {
+          alert("Error: account could not be deleted at this time.");
+        });
+      }
+    };
+
     $scope.createAccount = function() {
       console.log("test1");
       console.log($scope.newAccount);

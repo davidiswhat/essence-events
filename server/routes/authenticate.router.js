@@ -56,15 +56,20 @@ router.route('/delete')
               res.status(200).send();
               if (err) console.log(err);
             });
-
-          } else if (user._id === req.userid) {
+          } else if (req.body.userid === req.session.userId) {
             console.log("user deleted their own account")
-            user.remove(function (err) {
-              if (err) console.log(err);
+            User.findById(req.body.userid, function (err, user) {
+              console.log(user);
+              user.remove(function(err) {
+                if (err) throw err;
+              });
+              req.session.userId = null;
               res.status(200).send();
+              if (err) console.log(err);
             });
-            //logout the user
-            req.session.userId = null;
+          }
+          else {
+            res.status(400).send();
           }
         }
       });

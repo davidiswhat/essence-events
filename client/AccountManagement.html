@@ -64,7 +64,7 @@
             <div class="span12">
                 <h4 align="center">Account Management</h4>
                 <div class="status alert alert-success" style="display: none"></div>
-                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="contact-us.send.php">
+                <form id="main-contact-form" class="contact-form" name="contact-form">
                     <div class="row">
                         <div class="span12">
                             <p style="display: none">{{getUserInfo()}} </p>
@@ -87,7 +87,7 @@
                             </div>
                             <br>
                             <div class="block">
-                                <button type="submit" class="btn btn-primary btn-small">Delete Account</button>
+                                <button ng-click="deleteUser()" class="btn btn-primary btn-small">Delete Account</button>
                             </div>
                             <br>
                         </div>
