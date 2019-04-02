@@ -19,9 +19,9 @@ router.route('/status')
 router.route("/logout")
   .get(function (req, res) {
     if (req.session.userId) {
+      console.log(req.session.userId);
       req.session.userId = null;
       console.log("Logged out.")
-      console.log(req.session.userId);
       res.status(200).send("Logged out.");
     }
     else {

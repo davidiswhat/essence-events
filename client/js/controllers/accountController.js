@@ -4,9 +4,12 @@ angular.module('accounts').controller('AccountsController', ['$scope', 'Accounts
 
     $scope.logout = function() {
       console.log("Attempting to Log out");
-      Accounts.logOut();
-      //alert("Loging Out.");
-      //window.location.replace("/index.html");
+      Accounts.logOut().then( function(result) {
+        window.location.replace("/index.html");
+      },
+      function (error) {
+        window.location.replace("/index.html");
+      });
     };
 
     $scope.createAccount = function() {
