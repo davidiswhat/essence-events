@@ -47,6 +47,7 @@
                         <!--<li><a href="AccountManagement.html">Account</a></li>-->
                         <li class="active"><a href="SignUp.html">Sign Up</a></li>
                         <li><a href="LogIn.html">Log In</a></li>
+                        <li ng-show="loggedIn"><a ng-click="logout()">Log Out</a></li>
                     </ul>        
                 </div>
             </div>
@@ -82,22 +83,20 @@
         </div>
         <font size="3">
         <div class = "other">
-            Already signed up? <a href="url">Log in</a>
+            Already signed up? <a href="LogIn.html">Log in</a>
         </div>
         </font>
         
         
 
-        <button ng-click="checkLogIn()">Click me</button>
-
     </section>
     <!--Footer-->
-    <div class="fixedBot2">
+    <div class="fixedBot">
         <footer id="footer">
             <div class="container">
                 <div class="row-fluid">
                     <div class="span5 cp">
-                        &copy; 2023 <a target="_blank" href="http://www.domain.com/"> by Essense Events</a>
+                        &copy; 2023 <a target="_blank" href="http://www.domain.com/"> by Essence Events</a>
                     </div>
                     <div class="span6">
                         <ul class="social pull-right">
