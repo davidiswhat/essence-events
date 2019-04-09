@@ -14,6 +14,12 @@ angular.module('accounts', []).factory('Accounts', function($http) {
     checkLogIn: function() {
 
       return $http.get('/api/authenticate/status');
+    },
+
+    changeName: function(Account) {
+      console.log("Attempting to change name (account factory)");
+      
+      return $http.post('/api/authenticate/setName', Account);
     }
   };
 

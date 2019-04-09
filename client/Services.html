@@ -50,6 +50,7 @@
                         <li ng-show="loggedIn"><a href="AccountManagement.html">Account</a></li>
                         <li ng-hide="loggedIn"><a href="SignUp.html">Sign Up</a></li>
                         <li ng-hide="loggedIn"><a href="LogIn.html">Log In</a></li>
+                        <li ng-show="loggedIn"><a ng-click="logout()">Log Out</a></li>
                     </ul>        
                 </div>
             </div>
@@ -57,34 +58,80 @@
     </header>
     <!-- /header -->
 
-    <section class="no-margin">
-        <div id="map" style="height:70px;"></div>
-    </section>
 
     <section id="contact-page" class="container">
-        <div id="map" style="height:10px;"></div>
+        
         <div class="BigFontZone">
-            <p class="center" font size="16">Calculate Your Cost Distribution:</p>
-            <form id = "pickValues">
-                Service1  ($1250.99) <input type="checkbox" name="color[]" id="red" value="1250.99">
-                Service2  ($200.50) <input type="checkbox" name="color[]" id="green" value="200.50">
-                Service3  ($300.50) <input type="checkbox" name="color[]" id="blue" value="300.50">
-                Service4  ($300.50) <input type="checkbox" name="color[]" id="cyan" value="300.50">
-                Service5  ($300.00) <input type="checkbox" name="color[]" id="magenta" value="300.00">
-                Service6  ($1250.99) <input type="checkbox" name="color[]" id="yellow" value="1250.99">
-                Service7  ($1250.99) <input type="checkbox" name="color[]" id="black" value="1250.99">
-                <br>
-                <br>
-                <!--input type="button" id="piechart" value="Piechart" onclick="drawChart();"/-->
-                <div id="piechart2" align='center'></div>
-            </form>
-            
+            <style>
+                * {
+                  box-sizing: border-box;
+                }
+                
+                /* Create two equal columns that floats next to each other */
+                .column {
+                  float: left;
+                  width: 50%;
+                  padding: 10px;
+                  height: 300px; /* Should be removed. Only for demonstration */
+                }
+                
+                /* Clear floats after the columns */
+                .row:after {
+                  content: "";
+                  display: table;
+                  clear: both;
+                }
+                </style>
+
+                
+
+
+<div class="row">
+  <div class="column">
+    <h2>Calculate Your Cost Distribution:</h2>
+    <form id = "pickValues">
+        Service1  ($1250.99) <input type="checkbox" name="color[]" id="red" value="1250.99"> <br>
+        Service2  ($200.50) <input type="checkbox" name="color[]" id="green" value="200.50"><br>
+        Service3  ($300.50) <input type="checkbox" name="color[]" id="blue" value="300.50"><br>
+        Service4  ($300.50) <input type="checkbox" name="color[]" id="cyan" value="300.50"><br>
+        Service5  ($300.00) <input type="checkbox" name="color[]" id="magenta" value="300.00"><br>
+        Service6  ($1250.99) <input type="checkbox" name="color[]" id="yellow" value="1250.99"><br>
+        Service7  ($1250.99) <input type="checkbox" name="color[]" id="black" value="1250.99"><br>
+        <br>
+        <br>
+        <!--input type="button" id="piechart" value="Piechart" onclick="drawChart();"/-->
+        
+    </form>
+  </div>
+    <div class="column">
+        <div id="piechart2" align='center'></div>
+    </div>
+</div>
+
         </div>
 
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
         
     </section>
     <!--Footer-->
-    <div class="fixedBot2">
+    <div>
             <footer id="footer">
                 <div class="container">
                     <div class="row-fluid">

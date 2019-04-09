@@ -63,5 +63,15 @@ angular.module('accounts').controller('AccountsController', ['$scope', 'Accounts
         }
       );
     }();
+
+    $scope.changeName = function() {
+      console.log("Attempting to change name (Account Controller)");
+
+      //var answer = Accounts.logIn($scope.Account);
+      //console.log(answer);
+
+       Accounts.logIn($scope.Account);
+    };
+
   }
 ]);
