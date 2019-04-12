@@ -4,6 +4,10 @@ angular.module('accounts', []).factory('Accounts', function($http) {
 	  return $http.post('/api/authenticate', newAccount);
     },
 
+    update: function(updatedAcc) {
+      return $http.post('/api/authenticate', updatedAcc);
+      },
+
     logIn: function(Account) {
       
       return $http.post('/api/authenticate', Account);
@@ -37,7 +41,7 @@ angular.module('accounts', []).factory('Accounts', function($http) {
       
       return $http.post('/api/authenticate/setName', Account);
     }
-    
+
   };
     
   return methods;
