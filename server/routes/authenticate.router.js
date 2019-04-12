@@ -112,6 +112,43 @@ router.route('/delete')
     }
   });
 
+  router.route('/update')
+  .post(function (req, res) {
+    console.log(req.body);
+    console.log("userid: ", req.body._id);
+    if (req.session.userId) {
+      User.findById(req.session.userId).exec(function(err, user) {
+        if(err) {
+          console.log("UserId not recognized...")
+          res.status(400).send(err);
+        } else {
+          if (user.isAdmin) {
+            console.log("admin updated account")
+            User.findByIdAndUpdate(req.body._id, { fullName: req.body.fullName, phoneNum: req.body.phoneNum}, function (err, user) {
+              console.log(user);
+              res.status(200).send();
+              if (err) console.log(err);
+            });
+          } else if (req.body._id === req.session.userId) {
+            console.log("user updated their own account");
+            User.findByIdAndUpdate(req.body._id, { fullName: req.body.fullName, phoneNum: req.body.phoneNum}, function (err, user) {
+              console.log(user);
+              res.status(200).send();
+              if (err) console.log(err);
+            });
+          }
+          else {
+            res.status(400).send();
+          }
+        }
+      });
+    }
+    else {
+      res.status(401).send("User is not logged in.");
+      console.log("tried to delete account, but user not logged in")
+    }
+  });
+  
 router.route('/all')
   .get(function (req, res) {
     if (req.session.userId) {

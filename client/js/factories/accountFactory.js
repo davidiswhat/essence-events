@@ -1,11 +1,11 @@
 angular.module('accounts', []).factory('Accounts', function($http) {
   var methods = {
 	  createAccount: function(newAccount) {
-	  return $http.post('/api/authenticate', newAccount);
+	    return $http.post('/api/authenticate', newAccount);
     },
 
-    update: function(updatedAcc) {
-      return $http.post('/api/authenticate', updatedAcc);
+    update: function(acc) {
+      return $http.post('/api/authenticate/update', acc);
       },
 
     logIn: function(Account) {
@@ -33,18 +33,11 @@ angular.module('accounts', []).factory('Accounts', function($http) {
     },
 
     checkLogIn: function() {
-
       return $http.get('/api/authenticate/status');
     },
 
     logOut : function() {
       return $http.get("/api/authenticate/logout");
-    },
-
-    changeName: function(Account) {
-      console.log("Attempting to change name (account factory)");
-      
-      return $http.post('/api/authenticate/setName', Account);
     }
 
   };

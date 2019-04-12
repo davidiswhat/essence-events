@@ -96,14 +96,51 @@ angular.module('accounts').controller('UserController', ['$scope', 'Accounts',
     };
 
     $scope.changeName = function() {
-      console.log("Attempting to change name (User Controller)");
       //can easily create variables from prompts
       //in the prompt, the first string is the text of the prompt, and the second string is the placeholder name
       var newName = prompt("Change Name", $scope.userinfo.fullName);
       console.log("(User Controller) changing name to: " + newName);
-      
+      $scope.userinfo.fullName = newName;
+      Accounts.update($scope.userinfo).then(
+        function() {          
+          Accounts.getAccountInfo().then(
+            function (result) {
+              console.log("received info");
+              console.log(result);
+              $scope.userinfo = result.data;
+            },
+            function (err) {
+              console.log("redirecting");
+              window.location.replace("/LogIn.html");
+              console.log(err);
+            }
+          );
+        }
+      );
+    };
 
-       Accounts.changeName($scope.Account);
+    $scope.changeNumber = function() {
+      //can easily create variables from prompts
+      //in the prompt, the first string is the text of the prompt, and the second string is the placeholder name
+      var newNum = prompt("Change Number", $scope.userinfo.phoneNum);
+      console.log("(User Controller) changing number to: " + newNum);
+      $scope.userinfo.phoneNum = newNum;
+      Accounts.update($scope.userinfo).then(
+        function() {          
+          Accounts.getAccountInfo().then(
+            function (result) {
+              console.log("received info");
+              console.log(result);
+              $scope.userinfo = result.data;
+            },
+            function (err) {
+              console.log("redirecting");
+              window.location.replace("/LogIn.html");
+              console.log(err);
+            }
+          );
+        }
+      );
     };
   }
 ]);
