@@ -13,11 +13,9 @@ angular.module('accounts').controller('AccountsController', ['$scope', 'Accounts
     };
 
     $scope.createAccount = function() {
-      console.log("test1");
       console.log($scope.newAccount);
       Accounts.createAccount($scope.newAccount).then(
         function(result){
-          console.log("callback");
           console.log(result);
           alert("Account creation successful.");
           window.location.replace("/AccountManagement.html");
@@ -35,7 +33,6 @@ angular.module('accounts').controller('AccountsController', ['$scope', 'Accounts
     };
 
     $scope.logIn = function() {
-      console.log("test3");
 
       //var answer = Accounts.logIn($scope.Account);
       //console.log(answer);

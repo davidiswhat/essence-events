@@ -44,7 +44,6 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
     };
 
     $scope.createAccount = function() {
-      console.log("test1");
       console.log($scope.newAccount);
       Accounts.createAccount($scope.newAccount).then(
         function(result){
@@ -66,7 +65,6 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
     };
 
     $scope.logIn = function() {
-      console.log("test3");
 
        Accounts.logIn($scope.Account).then(
          function(result2){
