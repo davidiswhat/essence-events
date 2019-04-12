@@ -8,6 +8,10 @@ angular.module('accounts', []).factory('Accounts', function($http) {
       return $http.post('/api/authenticate/update', acc);
       },
 
+    updatePass: function(newstuff) {
+      return $http.post('/api/authenticate/updatepass', newstuff);
+    },
+
     logIn: function(Account) {
       
       return $http.post('/api/authenticate', Account);

@@ -145,8 +145,47 @@ router.route('/delete')
     }
     else {
       res.status(401).send("User is not logged in.");
-      console.log("tried to delete account, but user not logged in")
+      console.log("tried to update account, but user not logged in")
     }
+  });
+
+  router.route('/updatepass')
+  .post(function (req, res) {
+    console.log(req.body);
+    if (req.session.userId) {
+      User.findById(req.session.userId).exec(function(err, user) {
+        if(err) {
+          console.log("UserId not recognized...")
+          res.status(400).send(err);
+        } else {
+            console.log("user changing their own password");
+            User.authenticate(user.email, req.body.password, function (error, user) {
+              if (error || !user) {
+                console.log("current password incorrect");
+                res.status(400).json({"error": "Current password does not match."});
+              } else {
+                if (req.body.newPassword === req.body.newPasswordConf) {
+                  console.log("current password incorrect");
+                  user.password = req.body.newPassword;
+                  user.save( function(err) {
+                    if(err) {
+                      console.log(err);
+                      res.status(400).send(err);
+                    } else {
+                      res.json(user);
+                    }
+                  });
+                } else {
+                  res.status(400).json({"error": "New password does not match confirmed password."});
+                }
+              }
+            });
+          }
+        });
+      } else {
+        res.status(401).send("User is not logged in.");
+        console.log("tried to change password, but user not logged in")
+      }
   });
   
 router.route('/all')

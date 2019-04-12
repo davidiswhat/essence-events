@@ -142,5 +142,25 @@ angular.module('accounts').controller('UserController', ['$scope', 'Accounts',
         }
       );
     };
+
+    $scope.changePassword = function() {
+      //can easily create variables from prompts
+      //in the prompt, the first string is the text of the prompt, and the second string is the placeholder name
+      var password = prompt("Enter current password");
+      var newPassword = prompt("Enter new password");
+      var newPasswordConf = prompt("Confirm new password");
+      console.log("(User Controller) changing password to: " + newPassword);
+      Accounts.updatePass({password: password, newPassword: newPassword, newPasswordConf}).then(
+        function() {
+              alert("Password change successful.");
+            },
+        function (err) {
+          console.log(err);
+          console.log(err.data);
+          console.log(err.error);
+          alert("Error: ", err.data.error);
+        }
+      );
+    };
   }
 ]);
