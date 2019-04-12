@@ -27,6 +27,18 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
       }
     );
 
+    $scope.approveUser = function (userid) {
+      result = Accounts.approve(userid).then(function(response) {
+        console.log("approving");
+        console.log("refreshing");
+        Accounts.getAll().then(function(response) {
+          $scope.users = response.data;
+        }, function(error) {
+          console.log('Unable to retrieve listings:', error);
+        });
+      });
+    }
+
     $scope.deleteUser = function (userid) {
       if (confirm("Are you sure you want to delete this account?"))
       {
@@ -39,7 +51,6 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
             console.log('Unable to retrieve listings:', error);
           });
         });
-        console.log(result);
       }
     };
 

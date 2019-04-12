@@ -7,7 +7,8 @@ var admin = {
   password: "password123",
   phoneNum: "admin",
   fullName: "admin",
-  isAdmin: true
+  isAdmin: true,
+  isApproved: true
 }
 
 User.create(admin, function (error, user) {
@@ -34,6 +35,37 @@ router.route('/status')
     else {
       console.log("User is not logged in");
       res.status(401).send("User is not logged in.");
+    }
+  });
+
+
+  router.route('/approve')
+  .post(function (req, res) {
+    console.log("userid: ", req.body.userid);
+    if (req.session.userId) {
+      /* find the user corresponding to this request */
+      User.findById(req.session.userId).exec(function(err, user) {
+        if(err) {
+          console.log("UserId not recognized...")
+          res.status(400).send(err);
+        } else {
+          if (user.isAdmin) {
+            console.log("admin approved");
+            User.findByIdAndUpdate(req.body.userid, {isApproved: true}, function (err, user) {
+              console.log(user);
+              if (err) console.log(err);
+              res.status(200).send();
+            });
+          }
+          else {
+            res.status(400).send();
+          }
+        }
+      });
+    }
+    else {
+      res.status(401).send("User is not logged in.");
+      console.log("tried to delete account, but user not logged in")
     }
   });
 

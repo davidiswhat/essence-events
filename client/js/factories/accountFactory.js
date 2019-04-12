@@ -25,6 +25,11 @@ angular.module('accounts', []).factory('Accounts', function($http) {
       return $http.get('/api/authenticate/info');
     },
 
+    approve: function(userid) {
+      console.log("approving ", userid);
+      return $http.post("/api/authenticate/approve", {"userid": userid});
+    },
+
     checkLogIn: function() {
 
       return $http.get('/api/authenticate/status');
