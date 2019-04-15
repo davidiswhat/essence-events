@@ -15,153 +15,94 @@
 <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 <link rel="shortcut icon" href="images/favicon.png">
 <style>
-    .content {
-        display: none;
-    }
-    .content2{
-        display: none;
-    }
-    .content3{
-        display: none;
-    }
-    button {
-        margin-top: 30px;
-    }
-    .next {
-        margin-left: 50px;
-    }
-    .next2 {
-        margin-left: 50px;
-    }
-    .next3 {
-        margin-left: 50px;
+    .content{
+        background-color: white;
+        width: 800px;
+        height: 400px;
+        border: 15px solid blue;
+        padding: 50px;
+        margin: 20px;
     }
     img {
-        float: left;
+        float: right;
     }
 </style>
+<script>
+
+    window.addEventListener('load', function() {
+    function make(prefix, arr, arr2)
+    {
+        var img = document.getElementById(prefix + '_' + 'img');
+        var next = document.getElementById(prefix + '_' + 'next');
+        var prev = document.getElementById(prefix + '_' + 'prev');
+        var index = 0;
+
+        //var text = document.getElementById(prefix + '_' + 'text');
+        next.addEventListener('click', function() {
+            index = (index + 1) % arr.length;
+            img.src = arr[index];
+            document.getElementById(prefix+'_'+'text').innerHTML = arr2[index];
+            //document.getElementById("peep").innerHTML = "Welcome " + name;
+        });
+        prev.addEventListener('click', function() {
+            --index;
+            if (index < 0) {
+                index = arr.length - 1;
+            }
+            img.src = arr[index];
+            document.getElementById(prefix+'_'+'text').innerHTML = arr2[index];
+        });
+    }
+    
+    make('a', [
+        'images/websiteImage1.webp',
+        'images/ImageOfPerson2.png',
+        'images/ImageOfPerson3.png'
+    ],
+    [
+        'This text is the content of the box. We have added a 50px padding, 20px margin and a 15px green border. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+        'Diff text',
+        'Diff text2',
+    ]
+    );
+    make('b', [
+        'images/websiteImage1.webp',
+        'images/ImageOfPerson2.png',
+        'images/ImageOfPerson3.png'
+    ],
+    [
+        'This text is the content of the box. We have added a 50px padding, 20px margin and a 15px green border. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+        'Diff text',
+        'Diff text2',
+    ]
+    );
+    make('c', [
+        'images/websiteImage1.webp',
+        'images/ImageOfPerson2.png',
+        'images/ImageOfPerson3.png'
+    ],
+    [
+        'This text is the content of the box. We have added a 50px padding, 20px margin and a 15px green border. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+        'Diff text',
+        'Diff text2',
+    ]
+    );
+    });     
+</script>
+<script>
+    myFunction('a', [
+        'This text is the content of the box. We have added a 50px padding, 20px margin and a 15px green border. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+        'Diff text',
+    ]);
+    function myFunction(prefix, arr)
+    {
+        document.getElementById(prefix+'_'+'text').innerHTML = arr[index];
+    }
+</script>
 <body ng-app="essenceEvents" ng-controller="AccountsController">
     <p id="checkLogIn()"></p>
     <!--Header-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-    //ctrl k c to comment in html / javascript (cant reverse, dont do it)
-$(document).ready(function(){
-    //$('[data-id="'+7+'"]').hide();
-    //$('[data-id="'+8+'"]').hide();
-  $('body').on('click', '.next', function() { 
-    var id = $('.content:visible').data('id');
-    var nextId = $('.content:visible').data('id')+1;
-    if(nextId ==4){
-        nextId=1;
-    }
-    $('[data-id="'+id+'"]').hide();
-    $('[data-id="'+nextId+'"]').show();
-    
-    if($('.back:hidden').length == 1){
-        $('.back').show();
-    }
-    /*
-    if(nextId==3){
-        $('.next').hide();
-    }*/
-    
-    // if(nextId == 3){
-	//     $('.content-holder').hide();
-	//     $('.end').show();
-    // }
-});
-
-$('body').on('click', '.back', function() { 
-    var id = $('.content:visible').data('id');
-    var prevId = $('.content:visible').data('id')-1;
-    if(prevId ==0){
-        prevId=3;
-    }
-    $('[data-id="'+id+'"]').hide();
-    $('[data-id="'+prevId+'"]').show();
-    $('.next').show();
-});
-
-// $('body').on('click', '.edit-previous', function() { 
-// 	$('.end').hide();
-//     $('.content-holder').show();
-//     $('#content-3').show();
-// });
-
-/**********Repetition********/
-  $('body').on('click', '.next2', function() { 
-    var id = $('.content2:visible').data('id');
-    var nextId = $('.content2:visible').data('id')+1;
-    if(nextId ==9){
-        nextId=6;
-    }
-    console.log(nextId);
-    $('[data-id="'+id+'"]').hide();
-    $('[data-id="'+nextId+'"]').show();
-
-    if($('.back2:hidden').length == 1){
-        $('.back2').show();
-    }
-    
-    
-    /*
-    if(nextId==3){
-        $('.next').hide();
-    }*/
-    
-    // if(nextId == 3){
-	//     $('.content-holder').hide();
-	//     $('.end').show();
-    // }
-});
-
-$('body').on('click', '.back2', function() { 
-    var id = $('.content2:visible').data('id');
-    var prevId = $('.content2:visible').data('id')-1;
-    if(prevId ==5){
-        prevId=8;
-    }
-    console.log(prevId);
-    console.log(id);
-    $('[data-id="'+id+'"]').hide();
-    $('[data-id="'+prevId+'"]').show();
-    $('.next2').show();
-});
-/**********Repetition********/
-$('body').on('click', '.next3', function() { 
-    var id = $('.content3:visible').data('id');
-    var nextId = $('.content3:visible').data('id')+1;
-    if(nextId ==14){
-        nextId=11;
-    }
-    $('[data-id="'+id+'"]').hide();
-    $('[data-id="'+nextId+'"]').show();
-    
-    
-    /*
-    if(nextId==3){
-        $('.next').hide();
-    }*/
-    
-    // if(nextId == 3){
-	//     $('.content-holder').hide();
-	//     $('.end').show();
-    // }
-});
-
-$('body').on('click', '.back2', function() { 
-    var id = $('.content2:visible').data('id');
-    var prevId = $('.content2:visible').data('id')-1;
-    if(prevId ==10){
-        prevId=13;
-    }
-    $('[data-id="'+id+'"]').hide();
-    $('[data-id="'+prevId+'"]').show();
-    $('.next2').show();
-});
-});
-</script>
 </head>
 <body ng-app="">
     <header class="navbar navbar-fixed-top">
@@ -191,69 +132,27 @@ $('body').on('click', '.back2', function() {
         </div>
     </header>
     <section class="no-margin">
-        <div id="map" style="height:70px;"></div>
+    <div id="map" style="height:40px;"></div>
     </section>
     <section id="contact-page" class="container">
     <div class="BigFontZone">
-    <p font size="16">Celebrations: </p>
-    <div class="content" id="content-1" data-id='1' style="display: block;">
-        <p font size="16"> <img src="images/ImageOfPerson.png" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Celebrations: </p>
-        <p font size="16">Placeholder for text </p>
-    </div>
-    <div class="content" id="content-2" data-id='2'>
-        <p font size="16"> <img src="images/ImageOfPerson2.png" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Corporate: </p>
-        <p font size="16">Placeholder for text2 </p>
-    </div>
-    <div class="content" id="content-3" data-id='3'>
-        <p font size="16"> <img src="images/ImageOfPerson3.png" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
-        <p font size="16">Placeholder for text3 </p>
-    </div>
-    <button type="button" class="back">Back</button>
-    <button type="button" class="next">Next</button>
-    </div>
+    <p font size="16"><b>Celebrations: </b></p>
+    <div class = "content"> <img id="a_img" src="images/websiteImage1.webp" width = "300px" height = "85px"> <p id = "a_text">This text is the content of the box. We have added a 50px padding, 20px margin and a 15px green border. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> </div>
+    <button id="a_prev">Prev</button>
+    <button id="a_next">Next</button>
     <br>
     <br>
-    <br>    
-    <div class="BigFontZone">
-    <p font size="16">Corporate: </p>
-    <div class="content2" id="content-6" data-id='6' style="display: block;">
-        <p font size="16"> <img src="images/ImageOfPerson.png" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Celebrations: </p>
-        <p font size="16">Placeholder for text </p>
-    </div>
-    <div class="content2" id="content-7" data-id='7'>
-        <p font size="16"> <img src="images/ImageOfPerson2.png" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Corporate: </p>
-        <p font size="16">Placeholder for text2 </p>
-    </div>
-    <div class="content2" id="content-8" data-id='8'>
-        <p font size="16"> <img src="images/ImageOfPerson3.png" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
-        <p font size="16">Placeholder for text3 </p>
-    </div>
-    <div class="content2" id="content-9" data-id='9'>
-        <p font size="16"> <img src="images/ImageOfPerson3.png" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
-        <p font size="16">Placeholder for text3 </p>
-    </div>
-    <button type="button" class="back2">Back</button>
-    <button type="button" class="next2">Next</button>
-    </div>
+    <p font size="16"><b>Corporate: </b></p>
+    <div class = "content"> <img id="b_img" src="images/websiteImage1.webp" width = "300px" height = "85px"> <p id = "b_text">This text is the content of the box. We have added a 50px padding, 20px margin and a 15px green border. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> </div>
+    <button id="b_prev">Prev</button>
+    <button id="b_next">Next</button>
     <br>
     <br>
-    <br>    
-    <div class="BigFontZone">
-    <p font size="16">Weddings: </p>
-    <div class="content3" id="content-11" data-id='11' style="display: block;">
-        <p font size="16"> <img src="images/ImageOfPerson.png" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Celebrations: </p>
-        <p font size="16">Placeholder for text </p>
-    </div>
-    <div class="content3" id="content-12" data-id='12'>
-        <p font size="16"> <img src="images/ImageOfPerson2.png" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Corporate: </p>
-        <p font size="16">Placeholder for text2 </p>
-    </div>
-    <div class="content3" id="content-13" data-id='13'>
-        <p font size="16"> <img src="images/ImageOfPerson3.png" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
-        <p font size="16">Placeholder for text3 </p>
-    </div>
-    <button type="button" class="back3">Back</button>
-    <button type="button" class="next3">Next</button>
+    <p font size="16"><b>Weddings: </b></p>
+    <div class = "content"> <img id="c_img" src="images/websiteImage1.webp" width = "300px" height = "85px"><p id = "c_text">This text is the content of the box. We have added a 50px padding, 20px margin and a 15px green border. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p> </div>
+    <button id="c_prev">Prev</button>
+    <button id="c_next">Next</button>
+    <p font size="16">
     </div>
     </section>
     <!-- <div class="end" data-id='4'>
