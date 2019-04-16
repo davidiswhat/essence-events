@@ -35,7 +35,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-                <img src="images/logoReplace.webp" class="pull-left" href="index.html"></img>
+                <div class=HeaderCenter>
+                <a href="index.html"><img src="images/logoReplace2.PNG" class="pull-left" href="index.html"></img></a>
                 <div class="nav-collapse collapse pull-left">
                     <ul class="nav">
                         <li><a href="index.html">Home</a></li>
@@ -49,6 +50,7 @@
                         <li><a href="LogIn.html">Log In</a></li>
                         <li ng-show="loggedIn"><a ng-click="logout()">Log Out</a></li>
                     </ul>        
+                </div>
                 </div>
             </div>
         </div>
@@ -72,9 +74,9 @@
                     <label>Email: </label>
                     <input type="text" ng-model="newAccount.email" /><br />
                     <label>Password: </label>
-                    <input type="text" ng-model="newAccount.password" /><br />
+                    <input type="password" ng-model="newAccount.password" /><br />
                     <label>Confirm Password: </label>
-                    <input type="text" ng-model="newAccount.passwordConf" /><br />
+                    <input type="password" ng-model="newAccount.passwordConf" /><br />
                     <br>
                     <button class="btn btn-primary" ng-click="createAccount()">Create Account</button>
                 </form>

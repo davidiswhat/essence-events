@@ -954,6 +954,20 @@ img { /*added  by Nicholas to get images to center */
     font-size: large;
   }
 
+  div.BigFontZoneTall {  /*added by Nicholas to get larger font at places AND limit the width of the text*/
+    font-size: large;
+    width: 70%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  div.HeaderCenter {  /*added by Nicholas to get topbar list to center*/
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+
   /*everything below here also added by Nicholas */
   * {
     box-sizing: border-box;
