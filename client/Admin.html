@@ -71,8 +71,9 @@
                             <th>User Name</th>
                             <th>User Phone</th>
                             <th>User Balance</th>
-                            <th>Approval Status</th>
                             <th></th>
+                            <th></th>
+                            <th>Approval Status</th>
                             <th></th>
                             <th></th>
                           </tr>
@@ -81,12 +82,12 @@
                             <td>{{user.fullName}}</td>
                             <td>{{user.phoneNum}}</td>
                             <td>{{user.balance}}</td>
+                            <td><button class="btn btn-primary btn-small" ng-hide="user.email === 'admin' || !(user.isApproved)" style="background-color: blue" ng-click="addCharge(user._id,user.balance)">Charge</button></td>
+                            <td><button class="btn btn-primary btn-small" ng-hide="user.email === 'admin' || !(user.isApproved)" style="background-color: purple" ng-click="addPayment(user._id,user.balance)">Confirm Payment</button></td>
                             <td ng-hide="user.isApproved">Not Approved</td>
                             <td ng-show="user.isApproved">Approved</td>
                             <td><button ng-hide="user.isApproved" class="btn btn-primary btn-small" style="background-color: green" ng-click="approveUser(user._id)">Approve</button></td>
                             <td><button class="btn btn-primary btn-small" ng-hide="user.email === 'admin'" style="background-color: red" ng-click="deleteUser(user._id)">Delete</button></td>
-                            <td><button class="btn btn-primary btn-small" ng-hide="user.email === 'admin'" style="background-color: blue" ng-click="addCharge(user._id,user.balance)">Charge</button></td>
-
                         </tr>
                     </table>
                 </div>
