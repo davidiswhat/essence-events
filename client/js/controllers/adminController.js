@@ -14,7 +14,6 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
       }
     });
 
-
     Accounts.getAccountInfo().then(
       function (result) {
         console.log("received info");
@@ -37,6 +36,32 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
           console.log('Unable to retrieve listings:', error);
         });
       });
+    }
+    
+    $scope.addCharge = function(userId,currentBalance){
+     var chargeAmount = prompt("Enter charge amount: ", 0);
+     console.log("Charge successfully set.", chargeAmount);
+     Accounts.setBalance(userId, currentBalance - chargeAmount).then(
+       function(){
+         console.log("Success!")
+         Accounts.getAll().then(function(response) {
+          $scope.users = response.data;
+        }, function(error) {
+          if (error.data.error == "permission denied") {
+            console.log('permission denied');
+            window.location.replace("/AccountManagement.html");
+          }
+          else {
+            console.log('Unable to retrieve information:', error);
+          }
+        });
+    
+         
+      },
+      function(error){
+        console.log("Error!",error);
+      }
+     )
     }
 
     $scope.deleteUser = function (userid) {
