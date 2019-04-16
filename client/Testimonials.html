@@ -15,153 +15,89 @@
 <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 <link rel="shortcut icon" href="images/favicon.png">
 <style>
-    .content {
-        display: none;
-    }
-    .content2{
-        display: none;
-    }
-    .content3{
-        display: none;
-    }
-    button {
-        margin-top: 30px;
-    }
-    .next {
-        margin-left: 50px;
-    }
-    .next2 {
-        margin-left: 50px;
-    }
-    .next3 {
-        margin-left: 50px;
+    .content{
+        background-color: white;
+        width: 800px;
+        height: 350px;
+        border: 15px solid blue;
+        padding: 50px;
+        margin: 20px;
     }
     img {
-        float: left;
+        float: right;
+        padding-left: 25px;  
     }
 </style>
+<script>
+
+    window.addEventListener('load', function() {
+    function make(prefix, arr, arr2)
+    {
+        var img = document.getElementById(prefix + '_' + 'img');
+        var next = document.getElementById(prefix + '_' + 'next');
+        var prev = document.getElementById(prefix + '_' + 'prev');
+        var index = 0;
+
+        //var text = document.getElementById(prefix + '_' + 'text');
+        next.addEventListener('click', function() {
+            index = (index + 1) % arr.length;
+            img.src = arr[index];
+            document.getElementById(prefix+'_'+'text').innerHTML = arr2[index];
+            //document.getElementById("peep").innerHTML = "Welcome " + name;
+        });
+        prev.addEventListener('click', function() {
+            --index;
+            if (index < 0) {
+                index = arr.length - 1;
+            }
+            img.src = arr[index];
+            document.getElementById(prefix+'_'+'text').innerHTML = arr2[index];
+        });
+    }
+    
+    make('a', [
+        'images/websiteImage1.webp',
+        'images/websiteImage2.webp',
+    ],
+    [
+        'Albany: Essence Events was a pleasure to work with. I really do not know what I would have done without the help of someone taking on the stress of planning such a busy and beautiful day, as my wedding. I felt so comfortable during the whole process of planning my wedding with her. She was available every time I called or responded to every call I had. I highly recommend Essence Events to anyone who is planning any event. I had so many family/friends talk about, what a great job Essence of Style did.',
+        'Danyel: I thought I had most of my planning complete, but Essence Events directed me into the path that tied all of the loss ends that I thought I had covered together. The planner was very understanding, creating and was always looking for a way to bring everything I wanted in my wedding together. My husband and I was very pleased with her work. My husband and I recieved many compilements about Essence of Style, from people that attended.    ',
+    ]
+    );
+    make('b', [
+        'images/websiteImage4.webp',
+        'images/websiteImage3.webp',
+    ],
+    [
+        'Thretha: Your passion for your work and attention to detail and creativity helped bring our special day to life. You made our vision become a reality.',
+        'Thank you for making our fundraising event a beautiful success! Our guests will always remember this night.',
+    ]
+    );
+    make('c', [
+        'images/websiteImage5.webp',
+        'images/websiteImage6.webp',
+    ],
+    [
+        'Takara: She was a gift to us from a friend and was very much appreciated. She was always on point and calling to make sure we had everything we needed.our wedding. Our guest were taken care of as well as us, thanks to ESSENCE EVENTS!!!',
+        'Octavia: We greatly appreciate Essence Events going above and beyond to help us celebrate our special event.',
+    ]
+    );
+    });     
+</script>
+<script>
+    myFunction('a', [
+        'This text is the content of the box. We have added a 50px padding, 20px margin and a 15px green border. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum',
+        'Diff text',
+    ]);
+    function myFunction(prefix, arr)
+    {
+        document.getElementById(prefix+'_'+'text').innerHTML = arr[index];
+    }
+</script>
 <body ng-app="essenceEvents" ng-controller="AccountsController">
     <p id="checkLogIn()"></p>
     <!--Header-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script>
-    //ctrl k c to comment in html / javascript (cant reverse, dont do it)
-$(document).ready(function(){
-    //$('[data-id="'+7+'"]').hide();
-    //$('[data-id="'+8+'"]').hide();
-  $('body').on('click', '.next', function() { 
-    var id = $('.content:visible').data('id');
-    var nextId = $('.content:visible').data('id')+1;
-    if(nextId ==4){
-        nextId=1;
-    }
-    $('[data-id="'+id+'"]').hide();
-    $('[data-id="'+nextId+'"]').show();
-    
-    if($('.back:hidden').length == 1){
-        $('.back').show();
-    }
-    /*
-    if(nextId==3){
-        $('.next').hide();
-    }*/
-    
-    // if(nextId == 3){
-	//     $('.content-holder').hide();
-	//     $('.end').show();
-    // }
-});
-
-$('body').on('click', '.back', function() { 
-    var id = $('.content:visible').data('id');
-    var prevId = $('.content:visible').data('id')-1;
-    if(prevId ==0){
-        prevId=3;
-    }
-    $('[data-id="'+id+'"]').hide();
-    $('[data-id="'+prevId+'"]').show();
-    $('.next').show();
-});
-
-// $('body').on('click', '.edit-previous', function() { 
-// 	$('.end').hide();
-//     $('.content-holder').show();
-//     $('#content-3').show();
-// });
-
-/**********Repetition********/
-  $('body').on('click', '.next2', function() { 
-    var id = $('.content2:visible').data('id');
-    var nextId = $('.content2:visible').data('id')+1;
-    if(nextId ==9){
-        nextId=6;
-    }
-    console.log(nextId);
-    $('[data-id="'+id+'"]').hide();
-    $('[data-id="'+nextId+'"]').show();
-
-    if($('.back2:hidden').length == 1){
-        $('.back2').show();
-    }
-    
-    
-    /*
-    if(nextId==3){
-        $('.next').hide();
-    }*/
-    
-    // if(nextId == 3){
-	//     $('.content-holder').hide();
-	//     $('.end').show();
-    // }
-});
-
-$('body').on('click', '.back2', function() { 
-    var id = $('.content2:visible').data('id');
-    var prevId = $('.content2:visible').data('id')-1;
-    if(prevId ==5){
-        prevId=8;
-    }
-    console.log(prevId);
-    console.log(id);
-    $('[data-id="'+id+'"]').hide();
-    $('[data-id="'+prevId+'"]').show();
-    $('.next2').show();
-});
-/**********Repetition********/
-$('body').on('click', '.next3', function() { 
-    var id = $('.content3:visible').data('id');
-    var nextId = $('.content3:visible').data('id')+1;
-    if(nextId ==14){
-        nextId=11;
-    }
-    $('[data-id="'+id+'"]').hide();
-    $('[data-id="'+nextId+'"]').show();
-    
-    
-    /*
-    if(nextId==3){
-        $('.next').hide();
-    }*/
-    
-    // if(nextId == 3){
-	//     $('.content-holder').hide();
-	//     $('.end').show();
-    // }
-});
-
-$('body').on('click', '.back2', function() { 
-    var id = $('.content2:visible').data('id');
-    var prevId = $('.content2:visible').data('id')-1;
-    if(prevId ==10){
-        prevId=13;
-    }
-    $('[data-id="'+id+'"]').hide();
-    $('[data-id="'+prevId+'"]').show();
-    $('.next2').show();
-});
-});
-</script>
 </head>
 <body ng-app="">
     <header class="navbar navbar-fixed-top">
@@ -193,69 +129,27 @@ $('body').on('click', '.back2', function() {
         </div>
     </header>
     <section class="no-margin">
-        <div id="map" style="height:70px;"></div>
+    <div id="map" style="height:40px;"></div>
     </section>
     <section id="contact-page" class="container">
     <div class="BigFontZone">
-    <p font size="16">Celebrations: </p>
-    <div class="content" id="content-1" data-id='1' style="display: block;">
-        <p font size="16"> <img src="images/ImageOfPerson.png" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Celebrations: </p>
-        <p font size="16">Placeholder for text </p>
-    </div>
-    <div class="content" id="content-2" data-id='2'>
-        <p font size="16"> <img src="images/ImageOfPerson2.png" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Corporate: </p>
-        <p font size="16">Placeholder for text2 </p>
-    </div>
-    <div class="content" id="content-3" data-id='3'>
-        <p font size="16"> <img src="images/ImageOfPerson3.png" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
-        <p font size="16">Placeholder for text3 </p>
-    </div>
-    <button type="button" class="back">Back</button>
-    <button type="button" class="next">Next</button>
-    </div>
+    <p font size="16"><b>Celebrations: </b></p>
+    <div class = "content"> <img id="a_img" src="images/websiteImage1.webp" width = "300px" height = "85px"> <p id = "a_text"> Albany: Essence Events was a pleasure to work with. I really do not know what I would have done without the help of someone taking on the stress of planning such a busy and beautiful day, as my wedding. I felt so comfortable during the whole process of planning my wedding with her. She was available every time I called or responded to every call I had. I highly recommend Essence Events to anyone who is planning any event. I had so many family/friends talk about, what a great job Essence of Style did. </p></div>
+    <button id="a_prev">Prev</button>
+    <button id="a_next">Next</button>
     <br>
     <br>
-    <br>    
-    <div class="BigFontZone">
-    <p font size="16">Corporate: </p>
-    <div class="content2" id="content-6" data-id='6' style="display: block;">
-        <p font size="16"> <img src="images/ImageOfPerson.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Celebrations: </p>
-        <p font size="16">Placeholder for text </p>
-    </div>
-    <div class="content2" id="content-7" data-id='7'>
-        <p font size="16"> <img src="images/ImageOfPerson2.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Corporate: </p>
-        <p font size="16">Placeholder for text2 </p>
-    </div>
-    <div class="content2" id="content-8" data-id='8'>
-        <p font size="16"> <img src="images/ImageOfPerson3.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
-        <p font size="16">Placeholder for text3 </p>
-    </div>
-    <div class="content2" id="content-9" data-id='9'>
-        <p font size="16"> <img src="images/ImageOfPerson3.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
-        <p font size="16">Placeholder for text3 </p>
-    </div>
-    <button type="button" class="back2">Back</button>
-    <button type="button" class="next2">Next</button>
-    </div>
+    <p font size="16"><b>Corporate: </b></p>
+    <div class = "content"> <img id="b_img" src="images/websiteImage4.webp" width = "300px" height = "85px"> <p id = "b_text">Thretha: Your passion for your work and attention to detail and creativity helped bring our special day to life. You made our vision become a reality.</p> </div>
+    <button id="b_prev">Prev</button>
+    <button id="b_next">Next</button>
     <br>
     <br>
-    <br>    
-    <div class="BigFontZone">
-    <p font size="16">Weddings: </p>
-    <div class="content3" id="content-11" data-id='11' style="display: block;">
-        <p font size="16"> <img src="images/ImageOfPerson.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Celebrations: </p>
-        <p font size="16">Placeholder for text </p>
-    </div>
-    <div class="content3" id="content-12" data-id='12'>
-        <p font size="16"> <img src="images/ImageOfPerson2.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Corporate: </p>
-        <p font size="16">Placeholder for text2 </p>
-    </div>
-    <div class="content3" id="content-13" data-id='13'>
-        <p font size="16"> <img src="images/ImageOfPerson3.PNG" alt="Calendar" style="width:170px;height:150px;margin-right:15px;"> Weddings: </p>
-        <p font size="16">Placeholder for text3 </p>
-    </div>
-    <button type="button" class="back3">Back</button>
-    <button type="button" class="next3">Next</button>
+    <p font size="16"><b>Weddings: </b></p>
+    <div class = "content"> <img id="c_img" src="images/websiteImage5.webp" width = "300px" height = "85px"><p id = "c_text">Takara: She was a gift to us from a friend and was very much appreciated. She was always on point and calling to make sure we had everything we needed.our wedding. Our guest were taken care of as well as us, thanks to ESSENCE EVENTS!!!</p> </div>
+    <button id="c_prev">Prev</button>
+    <button id="c_next">Next</button>
+    <p font size="16">
     </div>
     </section>
     <!-- <div class="end" data-id='4'>
@@ -267,7 +161,7 @@ $('body').on('click', '.back2', function() {
         <div class="container">
             <div class="row-fluid">
                 <div class="span5 cp">
-                    &copy; 2023 <a target="_blank" href="http://www.domain.com/"> by Essense Events</a>
+                    &copy; 2023 <a target="_blank" href="http://www.domain.com/"> by Essence Events</a>
                 </div>
                 <div class="span6">
                     <ul class="social pull-right">

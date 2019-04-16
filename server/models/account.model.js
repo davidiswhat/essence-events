@@ -24,6 +24,11 @@ var userAccSchema = new mongoose.Schema({
     required: true,
     default: false
   },
+  isApproved: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
 });
 
 userAccSchema.statics.authenticate = function (email, password, callback) {

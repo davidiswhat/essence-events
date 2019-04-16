@@ -28,9 +28,9 @@
         display: inline-block;
         width: 200px;
         text-align: left;
-    }​
+    }
 </style>
-<body ng-app="essenceEvents" ng-controller="AccountsController">
+<body ng-app="essenceEvents" ng-controller="AdminController">
     <!--Header-->
     <header class="navbar navbar-fixed-top">
         <div class="navbar-inner">
@@ -66,31 +66,28 @@
         <div class="row">
             <div class="span12">
                 <h4 align="center">Account Management</h4>
+                <div class="tableWrapper">
+                    <table class="table table-hover" style=" background-color: white">
+                          <tr>
+                            <th>User Email</th>
+                            <th>User Name</th>
+                            <th>User Phone</th>
+                            <th>Approval Status</th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr ng-repeat="user in users | filter: query">
+                            <td>{{user.email}}</td>
+                            <td>{{user.fullName}}</td>
+                            <td>{{user.phoneNum}}</td>
+                            <td ng-hide="user.isApproved">Not Approved</td>
+                            <td ng-show="user.isApproved">Approved</td>
+                            <td><button ng-hide="user.isApproved" class="btn btn-primary btn-small" style="background-color: green" ng-click="approveUser(user._id)">Approve</button></td>
+                            <td><button class="btn btn-primary btn-small" ng-hide="user.email === 'admin'" style="background-color: red" ng-click="deleteUser(user._id)">Delete</button></td>
+                        </tr>
+                    </table>
+                </div>
                 <div class="status alert alert-success" style="display: none"></div>
-                <form id="main-contact-form" class="contact-form" name="contact-form" method="post" action="contact-us.send.php">
-                    <div class="row">
-                        <div class="span12">
-                            <div class="block">
-                                <label>Name: First Name Last Name</label>
-                                <button type="submit" class="btn btn-primary btn-small">Change Name</button>
-                            </div>
-                            <br>
-                            <div class="block">
-                                <label>Email: example@gmail.com </label>
-                                <button type="submit" class="btn btn-primary btn-small">Change Email</button>
-                            </div>
-                            <br>
-                            <div class="block">
-                                <button type="submit" class="btn btn-primary btn-small">Change Password</button>
-                            </div>
-                            <br>
-                            <div class="block">
-                                <button type="submit" class="btn btn-primary btn-small">Delete Account</button>
-                            </div>
-                            <br>
-                        </div>
-                    </div>
-                </form>
             </div>   
         </div>
     </section>
@@ -100,7 +97,7 @@
         <div class="container">
             <div class="row-fluid">
                 <div class="span5 cp">
-                    &copy; 2023 <a target="_blank" href="http://www.domain.com/"> by Essense Events</a>
+                    &copy; 2023 <a target="_blank" href="http://www.domain.com/"> by Essence Events</a>
                 </div>
                 <div class="span6">
                     <ul class="social pull-right">
@@ -117,5 +114,13 @@
         </div>
     </footer>
     </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/factories/accountFactory.js"></script>
+    <script src="js/controllers/adminController.js"></script>
+
 </body>
 </html>
