@@ -35,9 +35,14 @@ angular.module('accounts', []).factory('Accounts', function($http) {
       return $http.get('/api/authenticate/status');
     },
     
+    setBalance: function(userid, newBalance){
+      console.log("setting balance",userid,newBalance);
+      return $http.post("/api/authenticate/setBalance", {"userid": userid,"newBalance": newBalance});
+
+    },
     logOut : function() {
       return $http.get("/api/authenticate/logout");
-    }
+    }    
   };
     
   return methods;
