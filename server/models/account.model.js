@@ -29,6 +29,12 @@ var userAccSchema = new mongoose.Schema({
     required: true,
     default: false
   },
+
+ balance: {
+   type: Number,
+   required: false,
+   default: 0
+ }
 });
 
 userAccSchema.statics.authenticate = function (email, password, callback) {

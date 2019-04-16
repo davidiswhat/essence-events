@@ -2,18 +2,21 @@ var lastError = undefined;
 angular.module('accounts').controller('AdminController', ['$scope', 'Accounts', 
   function($scope, Accounts) {
 
-    Accounts.getAll().then(function(response) {
-      $scope.users = response.data;
-    }, function(error) {
-      if (error.data.error == "permission denied") {
-        console.log('permission denied');
-        window.location.replace("/AccountManagement.html");
-      }
-      else {
-        console.log('Unable to retrieve information:', error);
-      }
-    });
+    $scope.getAll = function () {
+      Accounts.getAll().then(function(response) {
+        $scope.users = response.data;
+      }, function(error) {
+        if (error.data.error == "permission denied") {
+          console.log('permission denied');
+          window.location.replace("/AccountManagement.html");
+        }
+        else {
+          console.log('Unable to retrieve information:', error);
+        }
+      });
+    }
 
+    $scope.getAll();
 
     Accounts.getAccountInfo().then(
       function (result) {
@@ -31,69 +34,54 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
       result = Accounts.approve(userid).then(function(response) {
         console.log("approving");
         console.log("refreshing");
-        Accounts.getAll().then(function(response) {
-          $scope.users = response.data;
-        }, function(error) {
-          console.log('Unable to retrieve listings:', error);
-        });
+        $scope.getAll();
       });
     }
+    
+    $scope.addCharge = function(userId,currentBalance){
+     var chargeAmount = prompt("Enter charge amount: ", 0);
+     if (chargeAmount <= 0) {
+       alert("Error: enter a positive value to charge the user.");
+     }
+     console.log("Charge successfully set.", chargeAmount);
+     Accounts.setBalance(userId, currentBalance - chargeAmount).then(
+       function(){
+        console.log("Success!")
+        //refreshing
+        $scope.getAll();
+      },
+      function(error){
+        console.log("Error!",error);
+      }
+     )
+    }
+
+    $scope.addPayment = function(userId,currentBalance){
+      var chargeAmount = prompt("Enter payment amount: ", 0);
+      if (chargeAmount <= 0) {
+        alert("Error: enter a positive payment to confirm.");
+      }
+      console.log("Charge successfully set.", chargeAmount);
+      Accounts.setBalance(userId, currentBalance + Number(chargeAmount)).then(
+        function(){
+         console.log("Success!")
+         //refreshing
+         $scope.getAll();
+       },
+       function(error){
+         console.log("Error!",error);
+       }
+      )
+     }
 
     $scope.deleteUser = function (userid) {
       if (confirm("Are you sure you want to delete this account?"))
       {
         result = Accounts.delete(userid).then(function(response) {
-          console.log("deleted");
-          console.log("refreshing");
-          Accounts.getAll().then(function(response) {
-            $scope.users = response.data;
-          }, function(error) {
-            console.log('Unable to retrieve listings:', error);
-          });
+          //refreshing
+          $scope.getAll();
         });
       }
-    };
-
-    $scope.createAccount = function() {
-      console.log("test1");
-      console.log($scope.newAccount);
-      Accounts.createAccount($scope.newAccount).then(
-        function(result){
-          console.log("callback");
-          console.log(result);
-          alert("Account creation successful.");
-          window.location.replace("/AccountManagement.html");
-          return result;
-        },
-        function(error){
-          console.log("error callback");
-          lastError = error;
-          console.log(error.data.error);
-          alert(error.data.error);
-          return error;
-        }
-      );
-
-    };
-
-    $scope.logIn = function() {
-      console.log("test3");
-
-       Accounts.logIn($scope.Account).then(
-         function(result2){
-           console.log("callback");
-           //console.log(result2);
-           alert("Logged In");
-           window.location.replace("/AccountManagement.html");
-           return result2;
-         },
-         function(error2){
-           console.log("error callback");
-           console.log(error2.statusText);
-           alert("Log In Failed");
-           return error2;
-         }
-       );
     };
 
     $scope.checkLogIn = function() {

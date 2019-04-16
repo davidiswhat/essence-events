@@ -161,6 +161,38 @@ router.route('/info')
       res.status(400).json({"error": "user is not logged in"});
     }
   });
+
+router.route("/setBalance")
+  .post(function (req, res) {
+  console.log("userid: ", req.body.userid);
+  console.log("newBalance: ",req.body.newBalance);
+  if (req.session.userId) {
+    User.findById(req.session.userId).exec(function(err, user) {
+      if(err) {
+        console.log("UserId not recognized...")
+        res.status(400).send(err);
+      } else {
+        if (user.isAdmin) {
+          console.log("admin set a charge")
+          User.findByIdAndUpdate(req.body.userid,{balance: req.body.newBalance} ,function (err, user) {
+            console.log(user)
+            res.status(200).send();
+            if (err) console.log(err);
+          });
+        }
+        else {
+          console.log("user tried to set their own charge")
+          res.status(400).send();
+        }
+      }
+    });
+  }
+  else {
+    res.status(401).send("User is not logged in.");
+    console.log("tried to set a charge")
+  }
+});
+
 router.route("/logout")
   .get(function (req, res) {
     if (req.session.userId) {
