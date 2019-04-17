@@ -10,7 +10,7 @@
     <title>About Us</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -21,8 +21,27 @@
     <!--Hopefully this + width device does mobile. https://www.w3schools.com/whatis/whatis_bootstrap.asp Actually crashes. Idk why-->
 </head>
 <style>
+    * {
+  box-sizing: border-box;
+}
+
+.column {
+  width: 33.3%;
+  padding: 2px;
+}
+
+/* Clearfix (clear floats) */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+  padding: 10px;
+}
     h4 { 
         font-size: 2em;
+    }
+    .img-circle {
+        border-radius: 50%;
     }
 </style>
 <body ng-app="essenceEvents" ng-controller="AccountsController">
@@ -58,6 +77,8 @@
     </header>
     <!-- /header -->
 
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     
 
 
@@ -74,8 +95,48 @@
                 <li>Professional results since 1999</li>
                 <li>Clients satisfied and elated as a result of our coordination</li>
             </ul> 
-        </div>
+=======
+    <section class="no-margin">
+        <div id="map" style="height:80px;"></div>
     </section>
+
+=======
+    <section class="no-margin">
+        <div id="map" style="height:80px;"></div>
+    </section>
+
+>>>>>>> Stashed changes
+        <div style="text-align: center"><img class="img-circle" src="images/Client.webp" alt="Avatar" style="width:200px"><img class="img-circle" src="images/Client.webp" alt="Avatar" style="width:200px"></div>
+        <div class="BigFontZone">
+                <div style="text-align: center">
+                        <!--Source: https://www.w3schools.com/howto/howto_css_images_side_by_side.asp-->
+                        <div class="row">
+                            <div class="column">
+                                <img  src="images/Client.webp" alt="img1" style="width:200px">
+                            </div>
+                            <div class="column">
+                                <img class="img-circle" src="images/Client.webp" alt="img2" style="width:200px">
+                            </div>
+                            <div class="column">
+                                <img src="images/Client.webp" alt="img3" style="width:200px">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="column">
+                                <img  src="images/Client.webp" alt="img1" style="width:200px">
+                            </div>
+                            <div class="column">
+                                <img class="images/Client.webp" src="images/Client.webp" alt="img2" style="width:200px">
+                            </div>
+                            <div class="column">
+                                <img src="images/Client.webp" alt="img3" style="width:200px">
+                            </div>
+                        </div>
+                        
+                    </div>
+            <p class="center" font size="16">Here is the detailed description of the company and everthing about it.  We need the client to tell us what to put here.</p>
+>>>>>>> Stashed changes
+        </div>
     <!--Footer-->
     <div class="fixedBot">
     <footer id="footer">
