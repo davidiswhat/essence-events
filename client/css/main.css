@@ -1,16 +1,12 @@
 @import url(https://fonts.googleapis.com/css?family=Fjalla+One);
 
+#footer {
+    position: fixed;
+    width: 100%; 
+    bottom: 0;
+    height: 4em;
+}
 
-div.fixedBot {
-    position: relative;
-    width: 100%;
-    bottom: 0px;
-  } 
-  div.fixedBot2 {
-    position: absolute;
-    width: 100%;
-    bottom: 0px;
-  } 
 .clearfix {
     *zoom: 1
 }
