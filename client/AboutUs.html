@@ -10,7 +10,7 @@
     <title>About Us</title>
     <meta name="description" content="">
     <meta name="keywords" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -21,27 +21,8 @@
     <!--Hopefully this + width device does mobile. https://www.w3schools.com/whatis/whatis_bootstrap.asp Actually crashes. Idk why-->
 </head>
 <style>
-    * {
-  box-sizing: border-box;
-}
-
-.column {
-  width: 33.3%;
-  padding: 2px;
-}
-
-/* Clearfix (clear floats) */
-.row::after {
-  content: "";
-  clear: both;
-  display: table;
-  padding: 10px;
-}
     h4 { 
         font-size: 2em;
-    }
-    .img-circle {
-        border-radius: 50%;
     }
 </style>
 <body ng-app="essenceEvents" ng-controller="AccountsController">
@@ -65,12 +46,14 @@
     </header>
     <!-- /header -->
 
+    
+
 
     <section id="contact-page" class="container">
         
         <div class="BigFontZoneTall">
             <h2 class="center">About Us</h2>
-            <img src="images/Client.webp" alt="Client">
+            <img src="images/Client.webp" alt="Client" class="circle">
             <br>
             <p class="center" font size="16">We are committed to helping you create your dream wedding. We listen to your needs, desires and brainstorm with you to make the day even more special. We are here to help bring your ideas to life, not to tell you how your wedding should be.</p>
             <br>
@@ -79,40 +62,8 @@
                 <li>Professional results since 1999</li>
                 <li>Clients satisfied and elated as a result of our coordination</li>
             </ul> 
-    <section class="no-margin">
-        <div id="map" style="height:80px;"></div>
-    </section>
-
-        <div style="text-align: center"><img class="img-circle" src="images/Client.webp" alt="Avatar" style="width:200px"><img class="img-circle" src="images/Client.webp" alt="Avatar" style="width:200px"></div>
-        <div class="BigFontZone">
-                <div style="text-align: center">
-                        <!--Source: https://www.w3schools.com/howto/howto_css_images_side_by_side.asp-->
-                        <div class="row">
-                            <div class="column">
-                                <img  src="images/Client.webp" alt="img1" style="width:200px">
-                            </div>
-                            <div class="column">
-                                <img class="img-circle" src="images/Client.webp" alt="img2" style="width:200px">
-                            </div>
-                            <div class="column">
-                                <img src="images/Client.webp" alt="img3" style="width:200px">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="column">
-                                <img  src="images/Client.webp" alt="img1" style="width:200px">
-                            </div>
-                            <div class="column">
-                                <img class="images/Client.webp" src="images/Client.webp" alt="img2" style="width:200px">
-                            </div>
-                            <div class="column">
-                                <img src="images/Client.webp" alt="img3" style="width:200px">
-                            </div>
-                        </div>
-                        
-                    </div>
-            <p class="center" font size="16">Here is the detailed description of the company and everthing about it.  We need the client to tell us what to put here.</p>
         </div>
+    </section>
     <!--Footer-->
     <div class="fixedBot">
     <footer id="footer">
@@ -123,10 +74,10 @@
                 </div>
                 <div class="span6">
                     <ul class="social pull-right">
-                        <li><a href="#"><i class="icon-facebook"></i></a></li>
-                        <li><a href="#"><i class="icon-pinterest"></i></a></li>
-                        <li><a href="#"><i class="icon-instagram"></i></a></li>  
-                        <li><a href="#"><i class="icon-linkedin"></i></a></li>                 
+                        <li><a href="https://www.facebook.com/EssenceEventsLLC/"><i class="icon-facebook"></i></a></li>
+                                <li><a href="https://www.pinterest.com/ermasams/"><i class="icon-pinterest"></i></a></li>
+                                <li><a href="https://www.instagram.com/essenceevent/"><i class="icon-instagram"></i></a></li>  
+                                <li><a href="https://www.linkedin.com/in/erma-sams-80720611"><i class="icon-linkedin"></i></a></li>                 
                     </ul>
                 </div>
                 <div class="span1">

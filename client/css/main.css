@@ -987,10 +987,26 @@ img { /*added  by Nicholas to get images to center */
     margin-right: auto;
   }
 
+  div.WhiteShadowedBox{
+    box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.2),0 4px 20px 0 rgba(0,0,0,0.19);
+    background-color: #FFF;
+    /* color: fuchsia; */
+    margin-left: auto;
+    margin-right: auto;
+    width: 55%;
+  }
+
   div.HeaderCenter {  /*added by Nicholas to get topbar list to center*/
     width: 80%;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  div.EntryCenter {  /*added by Nicholas to center page elements like on sign in */
+    width: 100%;
+    margin-left: 18%;
+    margin-right: 30%;
+    text-align: center;
   }
 
 
@@ -1005,6 +1021,18 @@ img { /*added  by Nicholas to get images to center */
     padding: 5px;
   }
   
+  .circle { /*added by Nicholas to make square images into circles on display. just add 'class="circle"' and you are good*/
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+  }
+
+  .square { 
+    width: 350px;
+    height: 350px;
+  }
+
   /* Clearfix (clear floats) */
   .row::after {
     content: "";
