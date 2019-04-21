@@ -65,12 +65,14 @@
     <div ng-hide="userinfo.isApproved" align="center" style="padding: 1em; background-color: rgba(255, 0, 0, 0.5)"><h5>Your account is still pending approval.</h5></div>
     <section id="contact-page" class="container">
         <div class="row">
+            <div style="padding-bottom: 1em">
+                    <h4 align="center">Account Management</h4>
+            </div>
             <div class="span12">
-                <h4 align="center">Account Management</h4>
                 <div class="status alert alert-success" style="display: none"></div>
                 <form id="main-contact-form" class="contact-form" name="contact-form">
                     <div class="row">
-                        <div class="span12">
+                        <div class="span6">
                             <p style="display: none">{{getUserInfo()}} </p>
                             <div class="block">
                                 <label>Name: {{userinfo.fullName}} </label>
@@ -95,6 +97,16 @@
                             </div>
                             <br>
                         </div>
+                        <div class="span6" align="center" style='text-align: center'>
+                            <h5>
+                            Your charges:
+                            <br>
+                            {{userinfo.balance}}
+                            </h5>
+                            <br>
+                            <div id="paypal-buttons" style="width: 65%; margin: 0 auto;">
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>   
@@ -116,7 +128,7 @@
                         <li><a href="#"><i class="icon-linkedin"></i></a></li>                 
                     </ul>
                 </div>
-                <div class="span1">
+                <divclass="span1">
                     <a id="gototop" class="gototop pull-right" href="#"><i class="icon-angle-up"></i></a>
                 </div>
             </div>
@@ -127,9 +139,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
     <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=Ab9knr4xaCISEM0PPiv1pLaIPtMnERHHqVTuDiYE-vevPfRp0JGlaBNSutSQn9npAJYb5EczVmuHcCXZ"></script>
     <script src="js/app.js"></script>
     <script src="js/factories/accountFactory.js"></script>
     <script src="js/controllers/userController.js"></script>
-
 </body>
 </html>
