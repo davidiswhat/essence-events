@@ -1,5 +1,35 @@
 @import url(https://fonts.googleapis.com/css?family=Fjalla+One);
 
+nav {
+    display: flex;
+    justify-content: center;
+    background-color: white;
+    align-items: center;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+}
+
+
+a.navbutton {
+    padding: 10px 15px 10px;
+    font-family: "Fjalla One";
+    font-weight: "Bold";
+    font-size: 16px;
+    color: #555555;
+
+}
+
+a.navactive {
+    padding: 10px 15px 10px;
+    font-family: "Fjalla One";
+    font-weight: "Bold";
+    font-size: 16px;
+    color: #2dcc70
+}
+
+a.navbutton:hover {
+    color: #2dcc70
+}
 #footer {
     position: fixed;
     width: 100%; 

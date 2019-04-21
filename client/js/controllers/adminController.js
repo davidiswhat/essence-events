@@ -44,7 +44,7 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
        alert("Error: enter a positive value to charge the user.");
      }
      console.log("Charge successfully set.", chargeAmount);
-     Accounts.setBalance(userId, currentBalance - chargeAmount).then(
+     Accounts.setBalance(userId, currentBalance + Number(chargeAmount)).then(
        function(){
         console.log("Success!")
         //refreshing
@@ -62,7 +62,7 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
         alert("Error: enter a positive payment to confirm.");
       }
       console.log("Charge successfully set.", chargeAmount);
-      Accounts.setBalance(userId, currentBalance + Number(chargeAmount)).then(
+      Accounts.setBalance(userId, currentBalance - Number(chargeAmount)).then(
         function(){
          console.log("Success!")
          //refreshing
