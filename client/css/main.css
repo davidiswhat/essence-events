@@ -967,6 +967,13 @@ img { /*added  by Nicholas to get images to center */
     margin-right: auto;
   }
 
+  div.EntryCenter {  /*added by Nicholas to center page elements like on sign in */
+    width: 65%;
+    margin-left: 30%;
+    margin-right: 30%;
+    text-align: center;
+  }
+
 
   /*everything below here also added by Nicholas */
   * {
@@ -979,6 +986,18 @@ img { /*added  by Nicholas to get images to center */
     padding: 5px;
   }
   
+  .circle { /*added by Nicholas to make square images into circles on display. just add 'class="circle"' and you are good*/
+    border-top-left-radius: 50% 50%;
+    border-top-right-radius: 50% 50%;
+    border-bottom-right-radius: 50% 50%;
+    border-bottom-left-radius: 50% 50%;
+  }
+
+  .square { 
+    width: 350px;
+    height: 350px;
+  }
+
   /* Clearfix (clear floats) */
   .row::after {
     content: "";
