@@ -63,7 +63,7 @@
                             <p style="display: none">{{getUserInfo()}} </p>
                             <div class="block">
                                 <label>Name: {{userinfo.fullName}} </label>
-                                <button type="submit" class="btn btn-primary btn-small">Change Name</button>
+                                <button class="btn btn-primary btn-small" ng-click="changeName()">Change Name</button>
                             </div>
                             <br>
                             <div class="block">
@@ -72,11 +72,11 @@
                             <br>
                             <div class="block">
                                 <label>Phone: {{userinfo.phoneNum}} </label>
-                                <button type="submit" class="btn btn-primary btn-small">Change Number</button>
+                                <button class="btn btn-primary btn-small" ng-click="changeNumber()">Change Number</button>
                             </div>
                             <br>
                             <div class="block">
-                                <button type="submit" class="btn btn-primary btn-small">Change Password</button>
+                                <button type="submit" class="btn btn-primary btn-small" ng-click="changePassword()">Change Password</button>
                             </div>
                             <br>
                             <div class="block">
