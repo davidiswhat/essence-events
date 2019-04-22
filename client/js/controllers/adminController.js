@@ -3,6 +3,7 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
   function($scope, Accounts) {
 
     $scope.getAllAccounts = function () {
+      console.log("updating accounts");
       Accounts.getAllAccounts().then(function(response) {
         $scope.users = response.data;
       }, function(error) {
