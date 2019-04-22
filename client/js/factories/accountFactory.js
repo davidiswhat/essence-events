@@ -11,10 +11,14 @@ angular.module('accounts', []).factory('Accounts', function($http) {
       return $http.post('/api/authenticate', Account);
     },
 
-    getAll: function () {
-      console.log("getting all accounts");
+    getAllAccounts: function () {
       return $http.get('/api/authenticate/all');
     },
+
+    getAllTransactions: function () {
+      return $http.get('/api/charge/all');
+    },
+
 
     delete: function (userid) {
       console.log("deleting ", userid);
@@ -40,9 +44,18 @@ angular.module('accounts', []).factory('Accounts', function($http) {
       return $http.post("/api/authenticate/setBalance", {"userid": userid,"newBalance": newBalance});
 
     },
+
     logOut : function() {
       return $http.get("/api/authenticate/logout");
-    }    
+    },
+
+    addCharge : function(email, username, userId, amount) {
+      return $http.post("/api/charge/", {"email": email, "username": username, "userId": userId, "amount" : amount});
+    },
+
+    deleteCharge : function(userid, adjustment, chargeid) {
+      return $http.post("/api/charge/delete", {"userid": userid, "adjustment": adjustment, "chargeid" : chargeid});
+    }
   };
     
   return methods;

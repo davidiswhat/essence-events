@@ -63,21 +63,39 @@
                             <th></th>
                             <th></th>
                             <th></th>
-                            <th></th>
                           </tr>
                           <tr ng-repeat="user in users | filter: query">
                             <td>{{user.email}}</td>
                             <td>{{user.fullName}}</td>
                             <td>{{user.phoneNum}}</td>
-                            <td>{{user.balance}}</td>
-                            <td><button class="btn btn-primary btn-small" ng-hide="user.email === 'admin' || !(user.isApproved)" style="background-color: red" ng-click="addCharge(user._id,user.balance)">Charge</button></td>
-                            <td><button class="btn btn-primary btn-small" ng-hide="user.email === 'admin' || !(user.isApproved)" style="background-color: green" ng-click="addPayment(user._id,user.balance)">Confirm Payment</button></td>
-                            <td><button ng-hide="user.isApproved" class="btn btn-primary btn-small" style="background-color: rgb(27, 206, 27)" ng-click="approveUser(user._id)">Approve</button></td>
-                            <td><button class="btn btn-primary btn-small" ng-hide="user.email === 'admin'" style="background-color: rgb(155, 11, 11)" ng-click="deleteUser(user._id)">Delete</button></td>
+                            <td ng-hide="user.email === 'admin'">{{user.balance}}</td>
+                            <td ng-show="user.email === 'admin'"></td>
+                            <td><button class="btn btn-primary btn-small" ng-hide="user.email === 'admin' || !(user.isApproved)" style="background-color: blue" ng-click="addCharge(user._id,user.balance)">Charge</button></td>
+                            <td><button ng-hide="user.isApproved" class="btn btn-primary btn-small" style="background-color: green" ng-click="approveUser(user._id)">Approve</button></td>
+                            <td><button class="btn btn-primary btn-small" ng-hide="user.email === 'admin'" style="background-color: red" ng-click="deleteUser(user._id)">Delete</button></td>
+                        </tr>
+                    </table>
+                </div> 
+                <h4 style="padding-top: 1em;" align="center">Recent Transactions</h4>
+                <div class="tableWrapper">
+                    <table class="table table-hover" style=" background-color: white">
+                          <tr>
+                            <th>User Name</th>
+                            <th>User Email</th>
+                            <th>Amount</th>
+                            <th></th>
+                            <th></th>
+                          </tr>
+                          <tr ng-repeat="trans in transactions | filter: query">
+                            <td>{{trans.username}}</td>
+                            <td>{{trans.email}}</td>
+                            <td>{{trans.amount}}</td>
+                            <td>{{trans._id}}</td>
+                            <td><button class="btn btn-primary btn-small" style="background-color:green" ng-click="approveCharge(trans.userId, trans.amount, trans._id)">Confirm</button></td>
+                            <td><button class="btn btn-primary btn-small" style="background-color:red" ng-click="rejectCharge(trans._id)">Reject</button></td>
                         </tr>
                     </table>
                 </div>
-                <div class="status alert alert-success" style="display: none"></div>
             </div>   
         </div>
     </section>

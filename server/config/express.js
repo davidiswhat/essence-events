@@ -6,6 +6,7 @@ var path = require('path'),
     config = require('./config'),
     session = require('express-session'),
     authenticationRouter = require("../routes/authenticate.router");
+    transactionRouter = require("../routes/transaction.router");
 
 module.exports.init = function() {
   //connect to database
@@ -32,6 +33,7 @@ module.exports.init = function() {
 
   /*Route requests to [url]/api/authenticate towards our authentication system */
   app.use('/api/authenticate', authenticationRouter);
+  app.use('/api/charge', transactionRouter);
 
   /*Go to homepage for all routes not specified */ 
   app.get('/*', function(req, res) {
