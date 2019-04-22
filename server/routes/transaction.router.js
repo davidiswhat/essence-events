@@ -28,8 +28,9 @@ router.route("/")
     });
 router.route("/delete")
     .post(function (req, res) {
-        console.log("adjustment", req.body.adjustment)
+        console.log("adjustment", req.body.adjustment);
         console.log("id", req.body.chargeid);
+        console.log("userid", req.body.userid);
         if (req.session.userId) {
             User.findById(req.session.userId).exec(function(err, user) {
                 if(err) {
@@ -40,8 +41,9 @@ router.route("/delete")
                     if (req.body.adjustment) {
                         User.findById(req.body.userid, function (err, user) {
                             user.balance = user.balance - req.body.adjustment;
+                            console.log("updating balance");
                             user.save( function(err) { 
-                                console.log(err);
+                                if (err) console.log(err);
                             });
                             if (err) console.log(err);
                         });
@@ -49,9 +51,11 @@ router.route("/delete")
                     }
 
                     Transaction.findById(req.body.chargeid, function (err, trans) {
-                        console.log(err);
+                        if (err) console.log(err);
                         console.log(trans);
+
                         trans.remove(function(err) {
+                            console.log("removing transaction");
                             if (err) throw err;
                         });
                         res.status(200).send();
@@ -82,7 +86,6 @@ router.route("/all")
                     console.log(err);
                     res.status(400).send(err);
                 } else {
-                    console.log(transactions);
                     res.send(transactions);
                 }
             });

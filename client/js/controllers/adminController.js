@@ -74,24 +74,6 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
      )
     }
 
-    $scope.addPayment = function(userId,currentBalance){
-      var chargeAmount = prompt("Enter payment amount: ", 0);
-      if (chargeAmount <= 0) {
-        alert("Error: enter a positive payment to confirm.");
-      }
-      console.log("Charge successfully set.", chargeAmount);
-      Accounts.setBalance(userId, currentBalance - Number(chargeAmount)).then(
-        function(){
-         console.log("Success!")
-         //refreshing
-         $scope.getAllAccounts();
-       },
-       function(error){
-         console.log("Error!",error);
-       }
-      )
-     }
-
     $scope.deleteUser = function (userid) {
       if (confirm("Are you sure you want to delete this account?"))
       {
@@ -130,9 +112,12 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
       {
         console.log("deleting", chargeid);
         result = Accounts.deleteCharge(userId, amount, chargeid).then(function(response) {
-          $scope.getAllAccounts();
           //refreshing
           $scope.getAllTransactions();
+          setTimeout( function () { 
+            console.log("getting accounts");
+            $scope.getAllAccounts();
+          }, 3000);
         });
       }
     };
