@@ -43,7 +43,6 @@ angular.module('accounts').controller('UserController', ['$scope', 'Accounts',
     };
 
     $scope.createAccount = function() {
-      console.log("test1");
       console.log($scope.newAccount);
       Accounts.createAccount($scope.newAccount).then(
         function(result){
@@ -65,8 +64,6 @@ angular.module('accounts').controller('UserController', ['$scope', 'Accounts',
     };
 
     $scope.logIn = function() {
-      console.log("test3");
-
        Accounts.logIn($scope.Account).then(
          function(result2){
            console.log("callback");
@@ -101,6 +98,75 @@ angular.module('accounts').controller('UserController', ['$scope', 'Accounts',
       );
     };
 
+    $scope.changeName = function() {
+      //can easily create variables from prompts
+      //in the prompt, the first string is the text of the prompt, and the second string is the placeholder name
+      var newName = prompt("Change Name", $scope.userinfo.fullName);
+      console.log("(User Controller) changing name to: " + newName);
+      $scope.userinfo.fullName = newName;
+      Accounts.update($scope.userinfo).then(
+        function() {          
+          Accounts.getAccountInfo().then(
+            function (result) {
+              console.log("received info");
+              console.log(result);
+              $scope.userinfo = result.data;
+            },
+            function (err) {
+              console.log("redirecting");
+              window.location.replace("/LogIn.html");
+              console.log(err);
+            }
+          );
+        }
+      );
+    };
+
+    $scope.changeNumber = function() {
+      //can easily create variables from prompts
+      //in the prompt, the first string is the text of the prompt, and the second string is the placeholder name
+      var newNum = prompt("Change Number", $scope.userinfo.phoneNum);
+      console.log("(User Controller) changing number to: " + newNum);
+      $scope.userinfo.phoneNum = newNum;
+      Accounts.update($scope.userinfo).then(
+        function() {          
+          Accounts.getAccountInfo().then(
+            function (result) {
+              console.log("received info");
+              console.log(result);
+              $scope.userinfo = result.data;
+            },
+            function (err) {
+              console.log("redirecting");
+              window.location.replace("/LogIn.html");
+              console.log(err);
+            }
+          );
+        }
+      );
+    };
+
+    $scope.changePassword = function() {
+      //can easily create variables from prompts
+      //in the prompt, the first string is the text of the prompt, and the second string is the placeholder name
+      var password = prompt("Enter current password");
+      var newPassword = prompt("Enter new password");
+      var newPasswordConf = prompt("Confirm new password");
+      console.log("(User Controller) changing password to: " + newPassword);
+      Accounts.updatePass({password: password, newPassword: newPassword, newPasswordConf}).then(
+        function() {
+              alert("Password change successful.");
+            },
+        function (err) {
+          console.log(err);
+          console.log(err.data);
+          console.log(err.error);
+          alert("Error: ", err.data.error);
+        }
+      );
+    };
+
+    
     paypal.Buttons({
       createOrder: function(data, actions) {
         return actions.order.create({

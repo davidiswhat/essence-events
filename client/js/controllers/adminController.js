@@ -3,6 +3,7 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
   function($scope, Accounts) {
 
     $scope.getAllAccounts = function () {
+      console.log("updating accounts");
       Accounts.getAllAccounts().then(function(response) {
         $scope.users = response.data;
       }, function(error) {
@@ -114,6 +115,15 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
       }
     };
 
+    $scope.logout = function() {
+      console.log("Attempting to Log out");
+      Accounts.logOut().then( function(result) {
+        window.location.replace("/index.html");
+      },
+      function (error) {
+        window.location.replace("/index.html");
+      });
+    };
 
     $scope.approveCharge = function (userId, amount, chargeid) {
       if (confirm("Are you sure you want to approve this transaction and update the user's account?"))

@@ -1,12 +1,18 @@
 angular.module('accounts', []).factory('Accounts', function($http) {
   var methods = {
 	  createAccount: function(newAccount) {
-    console.log("test2");
-	  return $http.post('/api/authenticate', newAccount);
+	    return $http.post('/api/authenticate', newAccount);
+    },
+
+    update: function(acc) {
+      return $http.post('/api/authenticate/update', acc);
+      },
+
+    updatePass: function(newstuff) {
+      return $http.post('/api/authenticate/updatepass', newstuff);
     },
 
     logIn: function(Account) {
-      console.log("test4");
       
       return $http.post('/api/authenticate', Account);
     },
@@ -35,7 +41,6 @@ angular.module('accounts', []).factory('Accounts', function($http) {
     },
 
     checkLogIn: function() {
-
       return $http.get('/api/authenticate/status');
     },
     
@@ -56,6 +61,7 @@ angular.module('accounts', []).factory('Accounts', function($http) {
     deleteCharge : function(userid, adjustment, chargeid) {
       return $http.post("/api/charge/delete", {"userid": userid, "adjustment": adjustment, "chargeid" : chargeid});
     }
+
   };
     
   return methods;
