@@ -113,6 +113,7 @@ angular.module('accounts').controller('UserController', ['$scope', 'Accounts',
       },
       onApprove: function(data, actions) {
         return actions.order.capture().then(function(details) {
+          alert('Transaction completed. Your account balance will be adjusted shortly.'); 
           Accounts.addCharge($scope.userinfo.email, $scope.userinfo.fullName, $scope.userinfo._id, $scope.userinfo.balance).then(
             function(result){
               alert('Transaction completed. Your account balance will be adjusted shortly.');            
