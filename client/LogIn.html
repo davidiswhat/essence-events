@@ -27,39 +27,25 @@
 </style>
 <body ng-app="essenceEvents" ng-controller="AccountsController">
     <!--Header-->
-    <header class="navbar navbar-fixed-top">
-        <div class="navbar-inner">
-            <div class="container">
-                <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </a>
-                <div class=HeaderCenter>
-                <a href="index.html"><img src="images/logoReplace2.PNG" class="pull-left" href="index.html"></img></a>
-                <div class="nav-collapse collapse pull-left">
-                    <ul class="nav">
-                        <li><a href="index.html">Home</a></li>
-                        <li><a href="Calendar.html">Calendar</a></li>
-                        <li><a href="Services.html">Services</a></li>
-                        <li><a href="Testimonials.html">Testimonials</a></li>
-                        <li><a href="ContactUs.html">Contact Us</a></li>
-                        <li><a href="AboutUs.html">About Us</a></li>
-                        <!--<li><a href="AccountManagement.html">Account</a></li>-->
-                        <li><a href="SignUp.html">Sign Up</a></li>
-                        <li class="active"><a href="LogIn.html">Log In</a></li>
-                    </ul>        
-                </div>
-                </div>
-            </div>
-        </div>
+
+    <header style="position: fixed; top: 0px; width: 100%" >
+            <nav>
+                <a href="index.html"><img src="images/logoReplace2.PNG" class="pull-left" href="index.html"></img></a>          
+                <a class="navbutton" href="index.html">Home</a>
+                <a class="navbutton" href="Calendar.html">Calendar</a>
+                <a class="navbutton" href="Services.html">Services</a>
+                <a class="navbutton" href="Testimonials.html">Testimonials</a>
+                <a class="navbutton" href="ContactUs.html">Contact Us</a>
+                <a class="navbutton" href="AboutUs.html">About Us</a>
+                <a class="navbutton" href="SignUp.html">Sign Up</a>
+                <a class="navbutton navactive" href="LogIn.html">Log In</a>
+            </nav>
     </header>
     <!-- /header -->
 
-    <section class="no-margin">
-        <div id="map" style="height:50px;"></div>
-    </section>
     <section id="contact-page" class="container">
+        <div class="WhiteShadowedBox">
+        <div class="EntryCenter">
         <div class="row-fluid">
             <div class="span8">
                 <div class="status alert alert-success" style="display: none"></div>
@@ -73,20 +59,17 @@
                     <br>
                     <button class="btn btn-primary" ng-click="logIn()">Log In</button>
                 </form>
-
+                <font size="3">
+                    <div class = "other">
+                    Don't have an account? <a href="SignUp.html">Sign up</a>
+                    <br>
+                    <br>
+                    </div>
+                </font>
             </div>   
         </div>
-        <font size="3">
-        <div class = "other">
-        <a href="url">I forgot my password</a>
-        <br>
-        Don't have an account? <a href="SignUp.html">Sign up</a>
-        <br>
-        <br>
         </div>
-        </font>
-        
-        
+        </div>
 
     </section>
     <!--Footer-->
@@ -95,14 +78,14 @@
             <div class="container">
                 <div class="row-fluid">
                     <div class="span5 cp">
-                        &copy; 2023 <a target="_blank" href="http://www.domain.com/"> by Essence Events</a>
+                        &copy; 2019 <a target="_blank" href="http://www.domain.com/"> by Essence Events</a>
                     </div>
                     <div class="span6">
                         <ul class="social pull-right">
-                            <li><a href="#"><i class="icon-facebook"></i></a></li>
-                            <li><a href="#"><i class="icon-pinterest"></i></a></li>
-                            <li><a href="#"><i class="icon-instagram"></i></a></li>  
-                            <li><a href="#"><i class="icon-linkedin"></i></a></li>                 
+                            <li><a href="https://www.facebook.com/EssenceEventsLLC/"><i class="icon-facebook"></i></a></li>
+                                <li><a href="https://www.pinterest.com/ermasams/"><i class="icon-pinterest"></i></a></li>
+                                <li><a href="https://www.instagram.com/essenceevent/"><i class="icon-instagram"></i></a></li>  
+                                <li><a href="https://www.linkedin.com/in/erma-sams-80720611"><i class="icon-linkedin"></i></a></li>                 
                         </ul>
                     </div>
                     <div class="span1">

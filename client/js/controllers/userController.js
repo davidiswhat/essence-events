@@ -7,6 +7,9 @@ angular.module('accounts').controller('UserController', ['$scope', 'Accounts',
         console.log("received info");
         console.log(result);
         $scope.userinfo = result.data;
+        if ($scope.userinfo.isAdmin) {
+          window.location.replace("/Admin.html");
+        }
       },
       function (err) {
         console.log("redirecting");
@@ -97,5 +100,31 @@ angular.module('accounts').controller('UserController', ['$scope', 'Accounts',
         }
       );
     };
+
+    paypal.Buttons({
+      createOrder: function(data, actions) {
+        return actions.order.create({
+          purchase_units: [{
+            amount:{
+              value: $scope.userinfo.balance
+            } 
+          }]
+        });
+      },
+      onApprove: function(data, actions) {
+        return actions.order.capture().then(function(details) {
+          Accounts.addCharge($scope.userinfo.email, $scope.userinfo.fullName, $scope.userinfo._id, $scope.userinfo.balance).then(
+            function(result){
+              alert('Transaction completed. Your account balance will be adjusted shortly.');            
+            },
+            function(error){
+               console.log("ERROR SENDING TO SERVER");
+
+            }
+          );
+        });
+      }
+    }).render('#paypal-buttons');
   }
 ]);
+

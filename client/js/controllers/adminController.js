@@ -2,8 +2,8 @@ var lastError = undefined;
 angular.module('accounts').controller('AdminController', ['$scope', 'Accounts', 
   function($scope, Accounts) {
 
-    $scope.getAll = function () {
-      Accounts.getAll().then(function(response) {
+    $scope.getAllAccounts = function () {
+      Accounts.getAllAccounts().then(function(response) {
         $scope.users = response.data;
       }, function(error) {
         if (error.data.error == "permission denied") {
@@ -16,7 +16,24 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
       });
     }
 
-    $scope.getAll();
+    $scope.getAllTransactions = function () {
+      console.log("getting all transactions");
+      Accounts.getAllTransactions().then(function(response) {
+        $scope.transactions = response.data;
+      }, function(error) {
+        if (error.data.error == "permission denied") {
+          console.log('permission denied');
+          window.location.replace("/AccountManagement.html");
+        }
+        else {
+          console.log('Unable to retrieve information:', error);
+        }
+      });
+    }
+
+    $scope.getAllAccounts();
+
+    $scope.getAllTransactions();
 
     Accounts.getAccountInfo().then(
       function (result) {
@@ -34,7 +51,7 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
       result = Accounts.approve(userid).then(function(response) {
         console.log("approving");
         console.log("refreshing");
-        $scope.getAll();
+        $scope.getAllAccounts();
       });
     }
     
@@ -44,11 +61,11 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
        alert("Error: enter a positive value to charge the user.");
      }
      console.log("Charge successfully set.", chargeAmount);
-     Accounts.setBalance(userId, currentBalance - chargeAmount).then(
+     Accounts.setBalance(userId, currentBalance + Number(chargeAmount)).then(
        function(){
         console.log("Success!")
         //refreshing
-        $scope.getAll();
+        $scope.getAllAccounts();
       },
       function(error){
         console.log("Error!",error);
@@ -62,11 +79,11 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
         alert("Error: enter a positive payment to confirm.");
       }
       console.log("Charge successfully set.", chargeAmount);
-      Accounts.setBalance(userId, currentBalance + Number(chargeAmount)).then(
+      Accounts.setBalance(userId, currentBalance - Number(chargeAmount)).then(
         function(){
          console.log("Success!")
          //refreshing
-         $scope.getAll();
+         $scope.getAllAccounts();
        },
        function(error){
          console.log("Error!",error);
@@ -79,7 +96,33 @@ angular.module('accounts').controller('AdminController', ['$scope', 'Accounts',
       {
         result = Accounts.delete(userid).then(function(response) {
           //refreshing
-          $scope.getAll();
+          $scope.getAllAccounts();
+        });
+      }
+    };
+
+    
+    $scope.rejectCharge = function (chargeid) {
+      if (confirm("Are you sure you want to reject this transaction?"))
+      {
+        console.log("deleting", chargeid);
+        result = Accounts.deleteCharge(null, 0, chargeid).then(function(response) {
+          //refreshing
+          $scope.getAllTransactions();
+        });
+
+      }
+    };
+
+
+    $scope.approveCharge = function (userId, amount, chargeid) {
+      if (confirm("Are you sure you want to approve this transaction and update the user's account?"))
+      {
+        console.log("deleting", chargeid);
+        result = Accounts.deleteCharge(userId, amount, chargeid).then(function(response) {
+          $scope.getAllAccounts();
+          //refreshing
+          $scope.getAllTransactions();
         });
       }
     };
